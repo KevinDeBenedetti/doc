@@ -4,6 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Doc",
   description: "My doc with vitepress",
+  base: '/doc/',
   head: [
     ['meta', { name: 'robots', content: 'noindex, nofollow' }]
   ],
