@@ -7,12 +7,12 @@ hero:
   text: "Ma documentation avec Vitepress"
   tagline: My great project tagline
   actions:
+    - theme: alt
+      text: Git
+      link: /fr/git 
     - theme: brand
       text: Markdown Examples
       link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
 
 features:
   - title: Feature A

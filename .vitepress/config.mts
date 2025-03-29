@@ -4,6 +4,14 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Doc",
   description: "My doc with vitepress",
+  head: [
+    ['meta', { name: 'robots', content: 'noindex, nofollow' }]
+  ],
+  themeConfig: {
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/KevinDeBenedetti' }
+    ]
+  },
   locales: {
     root: {
       label: 'English',
@@ -27,10 +35,7 @@ export default defineConfig({
             ]
           }
         ],
-    
-        socialLinks: [
-          { icon: 'github', link: 'https://github.com/KevinDeBenedetti' }
-        ]
+
       },
     },
     fr: {
@@ -57,9 +62,7 @@ export default defineConfig({
           }
         ],
     
-        socialLinks: [
-          { icon: 'github', link: 'https://github.com/KevinDeBenedetti' }
-        ]
+
       },
     }
   }

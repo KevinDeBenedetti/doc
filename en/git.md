@@ -99,3 +99,61 @@ git merge branch-name
 git remote add origin https://github.com/user/repo.git
 ```
 
+### List remote repositories
+```bash
+git remote -v
+```
+
+### Retrieve changes without merging
+```bash
+git fetch
+```
+
+## Historic
+
+### View history of commits
+```bash
+git log
+```
+
+### See the differences between files
+```bash
+git diff
+```
+
+### Cancel a modified file (before commit)
+```bash
+git restore file.txt
+```
+
+## Useful commands
+
+### Stash (save temporarily)
+```bash
+git stash
+```
+
+### Apply a stash
+```bash
+git stash pop
+```
+
+### Delete a file from the trace
+```bash
+git rm file.txt
+```
+
+### Rename / Move a file
+```bash
+git mv old-name new-name
+```
+
+### Create a tag
+```bash
+git tag v1.0.0
+```
+
+### Reminder
+```bash
+git help [commande]
+```
