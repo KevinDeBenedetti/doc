@@ -5,7 +5,8 @@ export const shared = defineConfig({
   description: "My doc with vitepress",
   base: '/doc/',
   head: [
-    ['meta', { name: 'robots', content: 'noindex, nofollow' }]
+    ['meta', { name: 'robots', content: 'noindex, nofollow' }],
+    ['link', { rel: 'icon', href: '/doc/favicon.ico' }],
   ],
 
   rewrites: {

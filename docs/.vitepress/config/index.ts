@@ -9,5 +9,5 @@ export default defineConfig({
   locales: {
     root: { label: 'English', ...en },
     fr: { label: 'Français', ...fr }
-  }
+  },
 })

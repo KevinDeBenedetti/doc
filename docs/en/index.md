@@ -3,13 +3,16 @@
 layout: home
 
 hero:
-  name: "Doc"
+  name: "Kevin's Doc"
   text: "My doc with vitepress"
   tagline: My great project tagline
+  # image: 
+  #   src: /avatar.png
+  #   alt: "Kevin's avatar"
   actions:
     - theme: brand
       text: Git
-      link: /en/git
+      link: /git
     - theme: brand
       text: Markdown Examples
       link: /markdown-examples

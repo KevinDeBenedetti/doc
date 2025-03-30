@@ -43,6 +43,19 @@
  *   in custom container, badges, etc.
  * -------------------------------------------------------------------------- */
 
+/* Tailwind CSS
+* Responsive
+*   min-width: 640px
+*   min-width: 960px
+*   min-width: 1280px 
+*/
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 960px;
+}
+
 :root {
   --vp-c-default-1: var(--vp-c-gray-1);
   --vp-c-default-2: var(--vp-c-gray-2);
@@ -92,10 +105,15 @@
 
 :root {
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(
+  /* --vp-home-hero-name-background: -webkit-linear-gradient(
     120deg,
     #bd34fe 30%,
     #41d1ff
+  ); */
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    #f4d35e,
+    #0d3b66 60%
   );
 
   --vp-home-hero-image-background-image: linear-gradient(
