@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 export const shared = defineConfig({
   title: "Doc",
   description: "My doc with vitepress",
-  // base: '/doc/',
+  base: '/doc/',
   head: [
     ['meta', { name: 'robots', content: 'noindex, nofollow' }]
   ],
