@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "Doc"
+  name: "Runes Doc"
   text: "Ma documentation avec Vitepress"
   tagline: My great project tagline
   actions:
@@ -21,5 +21,13 @@ features:
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
   - title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+
+buttons:
+  - text: "Git"
+    link: "fr/git"
+  - text: "Docker"
+    link: "fr/docker"
+  - text: "Hébergement"
+    link: "fr/hosting"
 ---
 

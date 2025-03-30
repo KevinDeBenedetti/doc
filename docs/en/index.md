@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "Kevin's Doc"
-  text: "My doc with vitepress"
+  name: "Runes Doc"
+  text: "My documentation"
   tagline: My great project tagline
   # image: 
   #   src: /avatar.png
@@ -14,12 +14,23 @@ hero:
       text: Git
       link: /git
     - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
-    - theme: alt
-      text: API Examples
-      link: /api-examples
-
+      text: GitHub
+      link: /github
+    - theme: brand
+      text: Hosting
+      link: /hosting
+    - theme: brand
+      text: Vue
+      link: /vue
+    - theme: brand
+      text: Nuxt
+      link: /nuxt
+    - theme: brand
+      text: FastAPI
+      link: /fastapi
+    - theme: brand
+      text: Express
+      link: /express
 features:
   - title: Feature A
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
