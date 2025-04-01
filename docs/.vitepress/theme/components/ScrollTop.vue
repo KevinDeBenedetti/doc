@@ -1,14 +1,30 @@
 <script setup lang="ts">
+import { onMounted, onUnmounted, ref } from 'vue'
+
+const showButton = ref(false)
+
 function scrollToTop() {
   window.scrollTo({
     top: 0,
     behavior: 'smooth',
   });
 }
+
+function handleScroll() {
+  showButton.value = window.scrollY > 100
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 </script>
 
 <template>
-  <button class="button" @click="scrollToTop">
+  <button v-if="showButton" class="button" @click="scrollToTop">
     <p class="button__text">
       <span style="--index: 0;">S</span>
       <span style="--index: 1;">C</span>
