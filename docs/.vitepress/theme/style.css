@@ -179,3 +179,21 @@ html {
 .VPButton:active {
   transform: translateY(-1px);
 }
+
+.VPButton.main {
+  background-color: #193855;
+  width: 100%;
+}
+
+/* Features */
+.VPLink.VPFeature {
+  background-color: #121318;
+  padding: 2rem 0;
+}
+
+.VPLink.VPFeature:hover {
+  background-color: #202128;
+  box-shadow: 0px 10px 20px #121318;
+  padding: 2rem 0;
+  cursor: pointer;
+}

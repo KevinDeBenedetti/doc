@@ -3,8 +3,7 @@ import { defineConfig, type DefaultTheme } from 'vitepress'
 export const fr = defineConfig({
   themeConfig: {
     nav: [
-      { text: 'Home', link: '/fr/' },
-      { text: 'Examples', link: '/fr/markdown-examples' }
+      { text: 'Accueil', link: '/fr/' },
     ],
 
     sidebar: [
@@ -13,9 +12,13 @@ export const fr = defineConfig({
         collapsed: true,
         items: [
           { text: 'Git', link: '/fr/git/' },
-          { text: 'GitHub', link: '/fr/github/' },
-          { text: 'Docker', link: '/fr/docker/' },
-          { text: 'Hosting', link: '/fr/hosting/' },
+        ]
+      },
+      {
+        text: 'Frameworks',
+        collapsed: true,
+        items: [
+          { text: 'Nuxt', link: '/fr/nuxt/' },
         ]
       }
     ]

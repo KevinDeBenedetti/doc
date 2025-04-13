@@ -3,16 +3,19 @@
 layout: home
 
 hero:
-  name: "Runes Doc"
-  text: "Ma documentation avec Vitepress"
-  tagline: My great project tagline
+  name: "Documentation"
+  # text: "Documentation"
+  # tagline: kevindb.dev
   actions:
-    - theme: alt
+    - theme: main
       text: Git
-      link: /fr/git 
-    - theme: brand
-      text: Markdown Examples
-      link: /markdown-examples
+      link: /fr/git
+    - theme: main
+      text: Nuxt
+      link: /fr/nuxt
+    # - theme: brand
+    #   text: Markdown Examples
+    #   link: /markdown-examples
 
 features:
   - title: Feature A
@@ -31,3 +34,6 @@ buttons:
     link: "fr/hosting"
 ---
 
+<!-- TODO :
+  - Vérifier les menus existants
+-->

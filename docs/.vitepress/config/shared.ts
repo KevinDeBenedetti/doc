@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export const shared = defineConfig({
-  title: "Doc",
+  title: "Runes Doc",
   description: "My doc with vitepress",
   base: '/doc/',
   head: [
