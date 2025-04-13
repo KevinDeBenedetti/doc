@@ -1,7 +1,9 @@
 name: 'Dependency Review'
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: ["Deploy VitePress site to GitHub Pages"]
+    types:
+      - completed
 
 permissions:
   contents: read
