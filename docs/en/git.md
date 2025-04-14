@@ -157,3 +157,30 @@ git tag v1.0.0
 ```bash
 git help [commande]
 ```
+
+## `Pull Request`
+
+### Create PR
+```bash
+gh pr create --title "New fonctionnality" --body "Detailed description" --base <branch>
+```
+- `title`: title of the PR.
+- `--body`: modifications description.
+- `--base`: the vised branch.
+
+You can also use this command, to launch the interactiv assistant without arguments.
+```bash
+gh pr create
+```
+
+### List opened PR
+
+```bash
+gh pr list
+````
+
+### Approuve a PR
+
+```bash
+gh pr review <PR_NUMBER> --approuve
+```
