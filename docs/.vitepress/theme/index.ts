@@ -13,7 +13,7 @@ export default {
     return h(DefaultTheme.Layout, null, {
       // https://vitepress.dev/guide/extending-default-theme#layout-slots
       'home-features-before': () => h(Earth),
-      'layout-bottom': () => h(ScrollTop)
+      'layout-bottom': () => h(ScrollTop),
     })
   },
   enhanceApp({ app, router, siteData }) {
