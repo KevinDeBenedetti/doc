@@ -1,5 +1,3 @@
-<!-- Translated on 15/04/2025 -->
-
 # Commandes de base
 
 ## Configuration initiale
@@ -10,13 +8,13 @@
 git config --global user.name "Your name"
 ```
 
-### Définir une adresse e-mail
+### Définir un email
 
 ```bash
 git config user.email "your@email.com"
 ```
 
-***Cette configuration est nécessaire pour les commits.***
+***Cette configuration est obligatoire pour les commits.***
 
 ## Démarrer un projet
 
@@ -32,44 +30,44 @@ git clone https://github.com/user/repo.git
 
 ## Workflow
 
-### Afficher l'état des fichiers modifiés
+### Voir l'état des fichiers modifiés
 ```bash
 git status
 ```
 
-### Ajouter un fichier à suivre
+### Ajouter un fichier au suivi
 ```bash
 git add file.txt
 ```
 
-### Ajouter tous les fichiers mis à jour
+### Ajouter tous les fichiers modifiés
 ```bash
 git add .
 ```
 
-### Ajouter des modifications
+### Ajouter des changements
 ```bash
 git commit -m "Description message"
 ```
 
-### Pousser vers un dépôt distant
+### Pousser vers le dépôt distant
 ```bash
 git push origin main
 ```
 
-### Récupérer les mises à jour
+### Récupère les mises à jour
 ```bash
 git pull
 ```
 
 ## Branches
 
-### Afficher la branche courante
+### Afficher la branche actuelle
 ```bash
 git branch
 ```
 
-### Lister toutes les branches
+### Lister les branches
 ```bash
 git branch -a
 ```
@@ -79,12 +77,12 @@ git branch -a
 git branch new-branch
 ```
 
-### Basculer vers une branche
+### Changer de branche
 ```bash
 git checkout branch-name
 ```
 
-### Créer et Basculer vers une branche
+### Créer et Switcher sur une branche
 ```bash
 git checkout -b branch-name
 ```
@@ -96,7 +94,7 @@ git merge branch-name
 
 ## Collaboration
 
-### Ajouter un nouveau dépôt distant
+### Ajouter un dépôt distant
 ```bash
 git remote add origin https://github.com/user/repo.git
 ```
@@ -106,7 +104,7 @@ git remote add origin https://github.com/user/repo.git
 git remote -v
 ```
 
-### Récupérer les modifications sans fusionner
+### Récupère les changements sans fusion
 ```bash
 git fetch
 ```
@@ -118,12 +116,12 @@ git fetch
 git log
 ```
 
-### Voir les différences entre les fichiers
+### Voir les différences entre fichiers
 ```bash
 git diff
 ```
 
-### Annuler une modification d'un fichier (avant commit)
+### Annuler un fichier modifié (avant commit)
 ```bash
 git restore file.txt
 ```
@@ -150,39 +148,12 @@ git rm file.txt
 git mv old-name new-name
 ```
 
-### Créer une étiquette
+### Créer un tag
 ```bash
 git tag v1.0.0
 ```
 
-### Rappel
+### Reminder
 ```bash
 git help [commande]
-```
-
-## `Pull Request`
-
-### Créer une PR
-```bash
-gh pr create --title "New fonctionnality" --body "Detailed description" --base <branch>
-```
-- `title`: titre de la PR.
-- `--body`: description des modifications.
-- `--base`: la branche visée.
-
-Vous pouvez également utiliser cette commande, pour lancer l'assistant interactif sans arguments.
-```bash
-gh pr create
-```
-
-### Lister les PR ouvertes
-
-```bash
-gh pr list
-```
-
-### Approuver une PR
-
-```bash
-gh pr review <PR_NUMBER> --approuve
 ```
