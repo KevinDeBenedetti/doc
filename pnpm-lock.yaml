@@ -1596,6 +1596,16 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
+  asynckit@0.4.0: {}
+
+  axios@1.8.4:
+    dependencies:
+      follow-redirects: 1.15.9
+      form-data: 4.0.2
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+
   birpc@0.2.19: {}
 
   call-bind-apply-helpers@1.0.2:
