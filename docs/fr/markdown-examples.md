@@ -1,4 +1,4 @@
-<!-- Translated on 15/04/2025 -->
+<!-- Translated on 16/04/2025 -->
 
 ```markdown
 # Exemples d'Extensions Markdown
@@ -20,7 +20,6 @@ export default {
     }
   }
 }
-```
 ````
 
 **Sortie**
@@ -33,7 +32,7 @@ export default {
     }
   }
 }
-```
+````
 
 ## Conteneurs Personnalisés
 

@@ -1,4 +1,4 @@
-<!-- Translated on 15/04/2025 -->
+<!-- Translated on 16/04/2025 -->
 
 # Commandes de base
 
@@ -79,12 +79,12 @@ git branch -a
 git branch new-branch
 ```
 
-### Basculer vers une branche
+### Basculer entre les branches
 ```bash
 git checkout branch-name
 ```
 
-### Créer et Basculer vers une branche
+### Créer et basculer vers une branche
 ```bash
 git checkout -b branch-name
 ```
