@@ -1528,7 +1528,7 @@ snapshots:
 
   '@tailwindcss/oxide-win32-x64-msvc@4.1.4':
     optional: true
-
+    
   '@tailwindcss/oxide@4.1.4':
     optionalDependencies:
       '@tailwindcss/oxide-android-arm64': 4.1.4
