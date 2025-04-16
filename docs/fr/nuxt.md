@@ -1,4 +1,4 @@
-<!-- Translated on 15/04/2025 -->
+<!-- Translated on 16/04/2025 -->
 
 ---
 title: Nuxt
@@ -27,11 +27,11 @@ description: Guide pour la configuration de votre projet Nuxt.
 <Badge type="tip" text="nuxt-link-checker" /> : Vérifie la validité des liens pour éviter les erreurs 404.
 <br>
 
-Ce guide vous montre comment configurer le SEO dans un projet Nuxt en utilisant divers modules populaires pour optimiser la visibilité de votre site sur les moteurs de recherche.
+Ce guide vous montre comment configurer l'optimisation SEO dans un projet Nuxt en utilisant divers modules populaires pour optimiser la visibilité de votre site sur les moteurs de recherche.
 
 ## Installation des Modules SEO
 
-### Installation de base
+### Installation de Base
 
 Installez le module SEO en exécutant la commande suivante dans votre terminal :
 
