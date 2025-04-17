@@ -1,4 +1,4 @@
-<!-- Translated on 15/04/2025 -->
+<!-- Translated on 16/04/2025 -->
 
 ```markdown
 # Exemples d'API d'exécution
@@ -43,7 +43,7 @@ const { site, theme, page, frontmatter } = useData()
 ### Données de la page frontmatter
 <pre>{{ frontmatter }}</pre>
 
-## Plus d'informations
+## Plus
 
 Consultez la documentation pour la [liste complète des API d'exécution](https://vitepress.dev/reference/runtime-api#usedata).
 ```

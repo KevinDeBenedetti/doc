@@ -1,8 +1,9 @@
-const axios = require('axios');
-const fs = require('fs');
-const path = require('path');
+const axios = require('axios')
+const fs = require('fs')
+const path = require('path')
+const logger = require('./logger.cjs')
 
-const ollamaBaseUrl = 'http://localhost:11434';
+const ollamaBaseUrl = 'http://localhost:11434'
 const model = 'gemma3'; // Choose your Ollama model
 const defaultLanguage = 'en'; // Choose your default language
 // const supportedLanguages = ['fr']; // Choose your supported languages
@@ -160,11 +161,17 @@ async function main() {
   const files = fs.readdirSync(docsEnDir);
 
   for (const file of files) {
+    const startTime = process.hrtime();
     const filePath = path.join(docsEnDir, file);
     if (file.endsWith('.md') && fs.lstatSync(filePath).isFile()) {
       for (const targetLanguage of Object.keys(languageSettings)) {
         await translateMarkdownFile(filePath, targetLanguage);
+        const endTime = process.hrtime(startTime);
+        const elapsedMs = endTime[0] * 1000 + endTime[1] / 1e6;
+        logger.info(`Traitement du fichier ${file} terminé en ${elapsedMs.toFixed(2)} ms`);
       }
+    } else {
+      logger.error(`Erreur lors du traitement du fichier ${file} : ${e.message}`);
     }
   }
 }
