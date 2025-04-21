@@ -13,6 +13,9 @@ hero:
     - theme: main
       text: Git
       link: /git
+    - theme: main
+      text: GitHub
+      link: /github   
 features:
   - title: Feature A
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
