@@ -15,6 +15,7 @@ export const en = defineConfig({
           { text: 'Docker', link: '/docker/' },
           { text: 'Git', link: '/git/' },
           { text: 'GitHub', link: '/github/' },
+          { text: 'Hosting', link: '/hosting/' },
         ]
       },
       {

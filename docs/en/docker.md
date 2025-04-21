@@ -175,7 +175,12 @@ docker stack rm <stack_name>
 ## Dockerfile examples
 
 ### Nuxt JS
-```dockerfile
+
+### Production
+
+::: code-group
+
+```dockerfile [Dockerfile]
 # syntax=docker/dockerfile:1
 ARG NODE_VERSION=21.0.0
 
@@ -193,7 +198,7 @@ COPY pnpm-lock.yaml /app/
 # Install pnpm
 RUN npm install -g pnpm
 
-# Install all depencies
+# Install all dependencies
 RUN pnpm install
 
 ADD . /app
@@ -208,6 +213,70 @@ COPY --from=build /app/.output /app/.output
 
 CMD ["node", ".output/server/index.mjs"]
 ```
+
+```yml [docker-compose.yml]
+services:
+  production:
+    platform: linux/amd64 # Add this code for Apple Silicon
+    build:
+      context: .
+    ports:
+      - "3001:3000"
+```
+
+:::
+
+### Development
+
+::: code-group
+
+```dockerfile [Dockerfile.dev]
+# syntax = docker/dockerfile:1
+
+ARG NODE_VERSION=20
+
+FROM node:${NODE_VERSION}-slim as base
+
+ENV NODE_ENV=development
+
+WORKDIR /src
+
+# Build
+FROM base as build
+
+COPY --link package.json package-lock.json .
+RUN npm install
+
+# Run
+FROM base
+
+COPY --from=build /src/node_modules /src/node_modules
+
+CMD [ "npm", "run", "dev" ]
+```
+
+```yml [docker-compose.dev.yml]
+volumes:
+  node_modules:
+services:
+  development:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - "3000:3000"
+      - "24678:24678"
+    volumes:
+      - .:/src
+      - node_modules:/src/node_modules
+```
+:::
+
+::: tip Run the development environment
+```sh
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+```
+:::
 
 ### Fast API
 ```dockerfile
