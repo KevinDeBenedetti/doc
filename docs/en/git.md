@@ -109,7 +109,7 @@ git remote -v
 git fetch
 ```
 
-## Historic
+## History
 
 ### View history of commits
 ```bash

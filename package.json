@@ -10,7 +10,7 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "translate": "node scripts/translate.cjs"
+    "translate": "node scripts/translate/index.js"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.4",

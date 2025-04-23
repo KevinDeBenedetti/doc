@@ -1,13 +1,12 @@
-<!-- Translated on 16/04/2025 -->
+<!-- Translated on 23/04/2025 -->
 
-```markdown
 # Exemples d'Extensions Markdown
 
-Cette page démontre certaines des extensions Markdown intégrées fournies par VitePress.
+Cette page illustre quelques extensions Markdown intégrées par VitePress.
 
-## Mise en évidence du code
+## Highlighting de la Syntax
 
-VitePress fournit la mise en évidence du code alimentée par [Shiki](https://github.com/shikijs/shiki), avec des fonctionnalités supplémentaires telles que l'éclaircissage des lignes :
+VitePress fournit le Highlighting de la Syntax alimenté par [Shiki](https://github.com/shikijs/shiki), avec des fonctionnalités supplémentaires comme le soulignement de ligne :
 
 **Entrée**
 
@@ -20,7 +19,7 @@ export default {
     }
   }
 }
-````
+```
 
 **Sortie**
 
@@ -32,7 +31,7 @@ export default {
     }
   }
 }
-````
+```
 
 ## Conteneurs Personnalisés
 
@@ -40,14 +39,14 @@ export default {
 
 ```md
 ::: info
-Ceci est une boîte d'informations.
+Ceci est une boîte d'information.
 :::
 
 ::: tip
-Ceci est un conseil.
+Ceci est un point de vente.
 :::
 
-::: warning
+::: avertissement
 Ceci est un avertissement.
 :::
 
@@ -55,7 +54,7 @@ Ceci est un avertissement.
 Ceci est un avertissement dangereux.
 :::
 
-::: details
+::: détails
 Ceci est un bloc de détails.
 :::
 ```
@@ -63,14 +62,14 @@ Ceci est un bloc de détails.
 **Sortie**
 
 ::: info
-Ceci est une boîte d'informations.
+Ceci est une boîte d'information.
 :::
 
 ::: tip
-Ceci est un conseil.
+Ceci est un point de vente.
 :::
 
-::: warning
+::: avertissement
 Ceci est un avertissement.
 :::
 
@@ -78,11 +77,10 @@ Ceci est un avertissement.
 Ceci est un avertissement dangereux.
 :::
 
-::: details
+::: détails
 Ceci est un bloc de détails.
 :::
 
 ## Plus
 
-Consultez la documentation pour la [liste complète des extensions Markdown](https://vitepress.dev/guide/markdown).
-```
+Consultez la documentation pour la liste complète des extensions Markdown ([https://vitepress.dev/guide/markdown](https://vitepress.dev/guide/markdown)).

@@ -1,188 +1,193 @@
-<!-- Translated on 16/04/2025 -->
+<!-- Translated on 23/04/2025 -->
 
-# Commandes de base
+```
+# Basic commands
 
-## Configuration initiale
+## Initial configuration
 
-### Définir un nom
-
+### Define a name
 ```bash
 git config --global user.name "Your name"
 ```
 
-### Définir une adresse e-mail
-
+### Define an email
 ```bash
 git config user.email "your@email.com"
 ```
 
-***Cette configuration est nécessaire pour les commits.***
+***This config is necessary for commits.***
 
-## Démarrer un projet
+## Start a project
 
-### Initialiser un dépôt dans le dossier courant
+### Init a repository in the current folder
 ```bash
 git init
 ```
 
-### Cloner un dépôt existant
+### Clone an existing repository
 ```bash
 git clone https://github.com/user/repo.git
 ```
 
 ## Workflow
 
-### Afficher l'état des fichiers modifiés
+### View the status of modified files
 ```bash
 git status
 ```
 
-### Ajouter un fichier à suivre
+### Add a file to track
 ```bash
 git add file.txt
 ```
 
-### Ajouter tous les fichiers mis à jour
+### Add all updated files
 ```bash
 git add .
 ```
 
-### Ajouter des modifications
+### Add changes
 ```bash
 git commit -m "Description message"
 ```
 
-### Pousser vers un dépôt distant
+### Push to remote repository
 ```bash
 git push origin main
 ```
 
-### Récupérer les mises à jour
+### Retrieve the updates
 ```bash
 git pull
 ```
 
 ## Branches
 
-### Afficher la branche courante
+### Show the current branch
 ```bash
 git branch
 ```
 
-### Lister toutes les branches
+### List all branches
 ```bash
 git branch -a
 ```
 
-### Créer une nouvelle branche
+### Create a new branch
 ```bash
 git branch new-branch
 ```
 
-### Basculer entre les branches
+### Switch branches
 ```bash
 git checkout branch-name
 ```
 
-### Créer et basculer vers une branche
+### Create and Switch on a branch
 ```bash
 git checkout -b branch-name
 ```
 
-### Fusionner une branche
+### Merge a branch
 ```bash
 git merge branch-name
 ```
 
 ## Collaboration
 
-### Ajouter un nouveau dépôt distant
+### Add a new remote repository
 ```bash
 git remote add origin https://github.com/user/repo.git
 ```
 
-### Lister les dépôts distants
+### List remote repositories
 ```bash
 git remote -v
 ```
 
-### Récupérer les modifications sans fusionner
+### Retrieve changes without merging
 ```bash
 git fetch
 ```
 
-## Historique
+## History
 
-### Afficher l'historique des commits
+### View history of commits
 ```bash
 git log
 ```
 
-### Voir les différences entre les fichiers
+### See the differences between files
 ```bash
 git diff
 ```
 
-### Annuler une modification d'un fichier (avant commit)
+### Cancel a modified file (before commit)
 ```bash
 git restore file.txt
 ```
 
-## Commandes utiles
+## Useful commands
 
-### Stash (sauvegarder temporairement)
+### Stash (save temporarily)
 ```bash
 git stash
 ```
 
-### Appliquer un stash
+### Apply a stash
 ```bash
 git stash pop
 ```
 
-### Supprimer un fichier du suivi
+### Delete a file from the trace
 ```bash
 git rm file.txt
 ```
 
-### Renommer / Déplacer un fichier
+### Rename / Move a file
 ```bash
 git mv old-name new-name
 ```
 
-### Créer une étiquette
+### Create a tag
 ```bash
 git tag v1.0.0
 ```
 
-### Rappel
+### Reminder
 ```bash
 git help [commande]
 ```
 
 ## `Pull Request`
 
-### Créer une PR
+### Create PR
 ```bash
 gh pr create --title "New fonctionnality" --body "Detailed description" --base <branch>
 ```
-- `title`: titre de la PR.
-- `--body`: description des modifications.
-- `--base`: la branche visée.
+- `title`: title of the PR.
+- `--body`: modifications description.
+- `--base`: the vised branch.
 
-Vous pouvez également utiliser cette commande, pour lancer l'assistant interactif sans arguments.
+You can also use this command, to launch the interactiv assistant without arguments.
 ```bash
 gh pr create
 ```
 
-### Lister les PR ouvertes
-
+### List opened PR
 ```bash
 gh pr list
 ```
 
-### Approuver une PR
-
+### Approuve a PR
 ```bash
 gh pr review <PR_NUMBER> --approuve
+```
+- `title`: title of the PR.
+- `--body`: modifications description.
+- `--base`: the vised branch.
+
+You can also use this command, to launch the interactiv assistant without arguments.
+```bash
+gh pr create
 ```
