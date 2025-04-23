@@ -1,3 +1,6 @@
+<!-- Translated on 23/04/2025 -->
+
+```
 # Hosting
 
 ::: details Table of content
@@ -95,7 +98,7 @@ The firewall is a security system that filters incoming and outgoing connections
 
 | Protocol | PORT |
 |:--------:|:----:|
-| SSH      | 22   |
+| SSH      | 22  |
 | HTTP     | 80   |
 | HTTPS    | 443  |
 | DNS      | 53   |
@@ -110,37 +113,11 @@ The firewall is a security system that filters incoming and outgoing connections
 |:--------:|:---------:|:-----------:|:--------------:|:----------------:|:------:|
 | TCP      | 0.0.0.0/0 | Any         |	VPS IP        |	22 / SSH	       | ACCEPT |
 | TCP      | 0.0.0.0/0 | Any         |	VPS IP        |	80 / HTTP	       | ACCEPT |
-| TCP      | 0.0.0.0/0 | Any         |	VPS IP        |	443 / HTTPS      | ACCEPT |
-
-#### Optional
-
-| Protocol | Source IP | Source Port | Destination IP |	Destination Port | Action |
-|:--------:|:---------:|:-----------:|:--------------:|:----------------:|:------:|
-| TCP      | 0.0.0.0/0 | Any         | VPS IP         |	53 / DNS         | ACCEPT |
-| TCP      | 0.0.0.0/0 | Any         | VPS IP         |	25 / SMTP	       | ACCEPT |
-| TCP      | 0.0.0.0/0 | Any         | VPS IP         |	143 / IMAP	     | ACCEPT |
-| TCP      | 0.0.0.0/0 | Any         | VPS IP         |	110 / POP3	     | ACCEPT |
-| TCP      | 0.0.0.0/0 | Any         | VPS IP         |	21 / FTP	       | ACCEPT |
+| TCP      | 0.0.0.0/0 | Any         | 0.0.0.0/0      |	Any     	       | ACCEPT |
 
 ### Outbound traffic
 
 | Protocol | Source IP | Source Port | Destination IP |	Destination Port | Action |
 |:--------:|:---------:|:-----------:|:--------------:|:----------------:|:------:|
 | All      | VPS IP    | Any         | 0.0.0.0/0      |	Any     	       | ACCEPT |
-
-
-## Dokploy
-
-### Notifications
-
-#### Telegram
-
-  1. Name : enter a name for the bot.
-  2. Bot Token : enter the bot token. Available on the Telegram app in @BotFather. Enter the bot.
-  3. Chat ID : enter the chat ID. Pour récuperer l’ID du channel, aller sur https://api.telegram.org/bot<BOT_TOKEN>/getUpdates
-
-::: tip Ressources
-[GitHub](https://gist.github.com/nafiesl/4ad622f344cd1dc3bb1ecbe468ff9f8a)
-
-[Documentation](https://docs.dokploy.com/docs/core/telegram)
-:::
+```

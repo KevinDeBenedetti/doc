@@ -3,3 +3,40 @@
 2025-04-16T19:41:23.522Z [INFO]: Traitement du fichier index.md terminé en 0.78 ms
 2025-04-16T19:41:32.729Z [INFO]: Traitement du fichier markdown-examples.md terminé en 9206.36 ms
 2025-04-16T19:41:41.326Z [INFO]: Traitement du fichier nuxt.md terminé en 8595.31 ms
+2025-04-23T19:27:40.449Z [INFO]: Starting translation process...
+2025-04-23T19:30:00.494Z [INFO]: Starting translation process...
+2025-04-23T19:30:23.832Z [INFO]: Starting translation process...
+2025-04-23T20:19:52.356Z [INFO]: 🚀 Starting translation process
+2025-04-23T20:19:52.374Z [ERROR]: Fatal error in main: processDirectory is not defined
+2025-04-23T20:21:00.752Z [INFO]: 🚀 Starting translation process
+2025-04-23T20:21:00.769Z [ERROR]: Fatal error in main: processDirectory is not defined
+2025-04-23T20:21:30.275Z [INFO]: 🚀 Starting translation process
+2025-04-23T20:21:30.292Z [ERROR]: Fatal error in main: processDirectory is not defined
+2025-04-23T20:23:34.967Z [INFO]: 🚀 Starting translation process
+2025-04-23T20:23:34.989Z [ERROR]: Fatal error in main: ENOENT: no such file or directory, scandir '/Users/kevin/dev/personal/doc/scripts/docs/en'
+2025-04-23T20:24:36.827Z [INFO]: 🚀 Starting translation process
+2025-04-23T20:24:36.841Z [ERROR]: Fatal error in main: ENOENT: no such file or directory, scandir '/Users/kevin/dev/personal/doc/scripts/docs/en'
+2025-04-23T20:25:25.391Z [INFO]: 🚀 Starting translation process
+2025-04-23T20:25:25.404Z [INFO]: ⏳ Translating api-examples.md → fr
+2025-04-23T20:25:33.277Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/api-examples.md
+2025-04-23T20:25:33.278Z [INFO]: ⏳ Translating docker.md → fr
+2025-04-23T20:37:07.798Z [INFO]: 🚀 Starting translation process
+2025-04-23T20:37:07.812Z [INFO]: ⏳ Translating api-examples.md → fr
+2025-04-23T20:37:11.116Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/api-examples.md
+2025-04-23T20:37:11.117Z [INFO]: ⏳ Translating docker.md → fr
+2025-04-23T20:37:25.623Z [WARN]: Headers mismatch: original(51) vs translated(53)
+2025-04-23T20:37:25.625Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/docker.md
+2025-04-23T20:37:25.625Z [INFO]: ⏳ Translating git.md → fr
+2025-04-23T20:37:33.756Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/git.md
+2025-04-23T20:37:33.756Z [INFO]: ⏳ Translating github.md → fr
+2025-04-23T20:37:42.196Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/github.md
+2025-04-23T20:37:42.196Z [INFO]: ⏳ Translating hosting.md → fr
+2025-04-23T20:37:52.507Z [WARN]: Headers mismatch: original(22) vs translated(18)
+2025-04-23T20:37:52.508Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/hosting.md
+2025-04-23T20:37:52.508Z [INFO]: ⏳ Translating index.md → fr
+2025-04-23T20:37:54.994Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/index.md
+2025-04-23T20:37:54.994Z [INFO]: ⏳ Translating markdown-examples.md → fr
+2025-04-23T20:37:59.084Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/markdown-examples.md
+2025-04-23T20:37:59.084Z [INFO]: ⏳ Translating nuxt.md → fr
+2025-04-23T20:38:03.410Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/nuxt.md
+2025-04-23T20:38:03.410Z [INFO]: 🎉 All done!

@@ -11,11 +11,17 @@ hero:
   #   alt: "Kevin's avatar"
   actions:
     - theme: main
+      text: Docker
+      link: /docker
+    - theme: main
       text: Git
       link: /git
     - theme: main
       text: GitHub
-      link: /github   
+      link: /github
+    - theme: main
+      text: Hosting
+      link: /hosting
 features:
   - title: Feature A
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
@@ -24,7 +30,3 @@ features:
   - title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
-
-<!-- TODO :
-  - Vérifier les menus existants
--->

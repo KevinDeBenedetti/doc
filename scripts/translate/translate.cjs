@@ -1,7 +1,7 @@
 const axios = require('axios')
 const fs = require('fs')
 const path = require('path')
-const logger = require('./logger.cjs')
+const logger = require('./logger.js')
 
 const ollamaBaseUrl = 'http://localhost:11434'
 const model = 'gemma3'; // Choose your Ollama model
@@ -11,12 +11,12 @@ const defaultLanguage = 'en'; // Choose your default language
 /**
  * Language precision settings for target languages.
  */
-const languageSettings = {
-  fr: {
-    name: 'French',
-    precision: 'Translate to French in a technical and clear style without any introductory commentary or additional explanation'
-  }
-};
+// const languageSettings = {
+//   fr: {
+//     name: 'French',
+//     precision: 'Translate to French in a technical and clear style without any introductory commentary or additional explanation'
+//   }
+// };
 
 /**
  * Checks the availability of the Ollama API.
@@ -168,10 +168,10 @@ async function main() {
         await translateMarkdownFile(filePath, targetLanguage);
         const endTime = process.hrtime(startTime);
         const elapsedMs = endTime[0] * 1000 + endTime[1] / 1e6;
-        logger.info(`Traitement du fichier ${file} terminé en ${elapsedMs.toFixed(2)} ms`);
+        logger.info(`Processing of the ${file} file, completed in ${elapsedMs.toFixed(2)} ms`);
       }
     } else {
-      logger.error(`Erreur lors du traitement du fichier ${file} : ${e.message}`);
+      logger.error(`Error while processing the file ${file} : ${e.message}`);
     }
   }
 }
