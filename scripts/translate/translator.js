@@ -7,7 +7,9 @@ import { logger } from './logger.js'
  * Checks the markdown structure and adds a date header.
  */
 function checkMarkdownStructure(original, translated) {
-  const headerRegex = /^#{1,6}\s+/gm
+  const headerRegex = /^---[\s\S]*?---/m
+  // const headerRegex = /^#{1,6}\s+/gm
+  // TODO : current updates
   const origH = (original.match(headerRegex) || []).length
   const transH = (translated.match(headerRegex) || []).length
   if (origH !== transH) {

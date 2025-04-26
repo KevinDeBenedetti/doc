@@ -40,3 +40,23 @@
 2025-04-23T20:37:59.084Z [INFO]: ⏳ Translating nuxt.md → fr
 2025-04-23T20:38:03.410Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/nuxt.md
 2025-04-23T20:38:03.410Z [INFO]: 🎉 All done!
+2025-04-26T18:01:54.639Z [INFO]: 🚀 Starting translation process
+2025-04-26T18:01:54.653Z [INFO]: ⏳ Translating api-examples.md → fr
+2025-04-26T18:02:11.667Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/api-examples.md
+2025-04-26T18:02:11.668Z [INFO]: ⏳ Translating docker.md → fr
+2025-04-26T18:02:27.596Z [WARN]: Headers mismatch: original(51) vs translated(54)
+2025-04-26T18:02:27.597Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/docker.md
+2025-04-26T18:02:27.597Z [INFO]: ⏳ Translating git.md → fr
+2025-04-26T18:02:35.129Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/git.md
+2025-04-26T18:02:35.129Z [INFO]: ⏳ Translating github.md → fr
+2025-04-26T18:02:45.753Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/github.md
+2025-04-26T18:02:45.754Z [INFO]: ⏳ Translating hosting.md → fr
+2025-04-26T18:02:56.098Z [WARN]: Headers mismatch: original(22) vs translated(18)
+2025-04-26T18:02:56.098Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/hosting.md
+2025-04-26T18:02:56.098Z [INFO]: ⏳ Translating index.md → fr
+2025-04-26T18:02:58.655Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/index.md
+2025-04-26T18:02:58.655Z [INFO]: ⏳ Translating markdown-examples.md → fr
+2025-04-26T18:03:02.750Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/markdown-examples.md
+2025-04-26T18:03:02.750Z [INFO]: ⏳ Translating nuxt.md → fr
+2025-04-26T18:03:07.049Z [INFO]: ✅ Saved to /Users/kevin/dev/personal/doc/docs/fr/nuxt.md
+2025-04-26T18:03:07.049Z [INFO]: 🎉 All done!

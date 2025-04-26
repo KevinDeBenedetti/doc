@@ -1,4 +1,4 @@
-<!-- Translated on 23/04/2025 -->
+<!-- Translated on 26/04/2025 -->
 
 # Exemples d'Extensions Markdown
 
@@ -6,7 +6,7 @@ Cette page illustre quelques extensions Markdown intégrées par VitePress.
 
 ## Highlighting de la Syntax
 
-VitePress fournit le Highlighting de la Syntax alimenté par [Shiki](https://github.com/shikijs/shiki), avec des fonctionnalités supplémentaires comme le soulignement de ligne :
+VitePress fournit le Highlighting de la Syntax basé sur [Shiki](https://github.com/shikijs/shiki), avec des fonctionnalités supplémentaires comme le soulignement de ligne :
 
 **Entrée**
 
@@ -83,4 +83,4 @@ Ceci est un bloc de détails.
 
 ## Plus
 
-Consultez la documentation pour la liste complète des extensions Markdown ([https://vitepress.dev/guide/markdown](https://vitepress.dev/guide/markdown)).
+Consultez la documentation pour la liste complète des extensions Markdown ([complète liste des extensions Markdown](https://vitepress.dev/guide/markdown)).
