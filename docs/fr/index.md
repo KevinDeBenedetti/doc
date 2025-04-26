@@ -1,4 +1,4 @@
-<!-- Translated on 23/04/2025 -->
+<!-- Translated on 26/04/2025 -->
 
 ---
 # https://vitepress.dev/reference/default-theme-home-page

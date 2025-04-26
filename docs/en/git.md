@@ -1,15 +1,13 @@
-# Basic commands
+# Commands
 
 ## Initial configuration
 
-### Define a name
-
+> Define a name
 ```bash
 git config --global user.name "Your name"
 ```
 
-### Define an email
-
+> Define an email
 ```bash
 git config user.email "your@email.com"
 ```
@@ -18,149 +16,148 @@ git config user.email "your@email.com"
 
 ## Start a project
 
-### Init a repository in the current folder
+> Init a repository in the current folder
 ```bash
 git init
 ```
 
-### Clone an existing repository
+> Clone an existing repository
 ```bash
 git clone https://github.com/user/repo.git
 ```
 
 ## Workflow
 
-### View the status of modified files
+> View the status of modified files
 ```bash
 git status
 ```
 
-### Add a file to track
+> Add a file to track
 ```bash
 git add file.txt
 ```
 
-### Add all updated files
+> Add all updated files
 ```bash
 git add .
 ```
 
-### Add changes
+> Add changes
 ```bash
 git commit -m "Description message"
 ```
 
-### Push to remote repository
+> Push to remote repository
 ```bash
 git push origin main
 ```
 
-### Retrieve the updates
+> Retrieve the updates
 ```bash
 git pull
 ```
 
 ## Branches
 
-### Show the current branch
+> Show the current branch
 ```bash
 git branch
 ```
 
-### List all branches
+> List all branches
 ```bash
 git branch -a
 ```
 
-### Create a new branch
+> Create a new branch
 ```bash
 git branch new-branch
 ```
 
-### Switch branches
+> Switch branches
 ```bash
 git checkout branch-name
 ```
 
-### Create and Switch on a branch
+> Create and Switch on a branch
 ```bash
 git checkout -b branch-name
 ```
-
-### Merge a branch
+> Merge a branch
 ```bash
 git merge branch-name
 ```
 
 ## Collaboration
 
-### Add a new remote repository
+> Add a new remote repository
 ```bash
 git remote add origin https://github.com/user/repo.git
 ```
 
-### List remote repositories
+> List remote repositories
 ```bash
 git remote -v
 ```
 
-### Retrieve changes without merging
+> Retrieve changes without merging
 ```bash
 git fetch
 ```
 
 ## History
 
-### View history of commits
+> View history of commits
 ```bash
 git log
 ```
 
-### See the differences between files
+> See the differences between files
 ```bash
 git diff
 ```
 
-### Cancel a modified file (before commit)
+> Cancel a modified file (before commit)
 ```bash
 git restore file.txt
 ```
 
 ## Useful commands
 
-### Stash (save temporarily)
+> Stash (save temporarily)
 ```bash
 git stash
 ```
 
-### Apply a stash
+> Apply a stash
 ```bash
 git stash pop
 ```
 
-### Delete a file from the trace
+> Delete a file from the trace
 ```bash
 git rm file.txt
 ```
 
-### Rename / Move a file
+> Rename / Move a file
 ```bash
 git mv old-name new-name
 ```
 
-### Create a tag
+> Create a tag
 ```bash
 git tag v1.0.0
 ```
 
-### Reminder
+> Reminder
 ```bash
 git help [commande]
 ```
 
 ## `Pull Request`
 
-### Create PR
+> Create PR
 ```bash
 gh pr create --title "New fonctionnality" --body "Detailed description" --base <branch>
 ```
@@ -173,14 +170,12 @@ You can also use this command, to launch the interactiv assistant without argume
 gh pr create
 ```
 
-### List opened PR
-
+> List opened PR
 ```bash
 gh pr list
-````
+```
 
-### Approuve a PR
-
+> Approuve a PR
 ```bash
-gh pr review <PR_NUMBER> --approuve
+gh pr review <PR_NUMBER> --approve
 ```

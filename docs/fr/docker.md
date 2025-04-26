@@ -1,4 +1,4 @@
-<!-- Translated on 23/04/2025 -->
+<!-- Translated on 26/04/2025 -->
 
 ```markdown
 ---
@@ -196,10 +196,14 @@ WORKDIR /app
 
 # Build
 FROM base as build
+
+COPY requirements.txt .
+
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
 COPY . .
 
-CMD ["npm", "run", "dev"]
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]
 ```
 
 ```yml
@@ -208,21 +212,6 @@ volumes:
   node_modules:
   .:/src
   -node_modules:/src/node_modules
-```
-
-### Fast API
-
-```dockerfile
-FROM python:3.9
-
-WORKDIR /app
-
-COPY requirements.txt .
-
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
-COPY . .
-
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]
 ```
 
 ### Tip Run the development environment
@@ -241,27 +230,7 @@ WORKDIR /app
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
-COPY . .
 
-CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]
-```
-
-### Tip Run the development environment
-
-```sh
-docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
-```
-
-### Fast API
-
-```dockerfile
-FROM python:3.9
-
-WORKDIR /app
-
-COPY requirements.txt .
-
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
 COPY . .
 
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]
@@ -275,7 +244,7 @@ volumes:
   -node_modules:/src/node_modules
 ```
 
-### Fast API
+###  Fast API
 
 ```dockerfile
 FROM python:3.9
@@ -285,6 +254,55 @@ WORKDIR /app
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+COPY . .
+
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]
+```
+
+```yml
+# docker-compose.dev.yml
+volumes:
+  node_modules:
+  .:/src
+  -node_modules:/src/node_modules
+```
+
+###  Fast API
+
+```dockerfile
+FROM python:3.9
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+COPY . .
+
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]
+```
+
+```yml
+# docker-compose.dev.yml
+volumes:
+  node_modules:
+  .:/src
+  -node_modules:/src/node_modules
+```
+
+###  Fast API
+
+```dockerfile
+FROM python:3.9
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
 COPY . .
 
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]
