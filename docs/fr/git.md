@@ -5,6 +5,7 @@
 ## Initial Configuration
 
 > Define a name
+
 ```bash
 git config --global user.name "Your name"
 ```
@@ -181,4 +182,12 @@ gh pr list
 > Approuve a PR
 ```bash
 gh pr review <PR_NUMBER> --approve
+```
+- `title`: title of the PR.
+- `--body`: modifications description.
+- `--base`: the vised branch.
+
+You can also use this command, to launch the interactiv assistant without arguments.
+```bash
+gh pr create
 ```

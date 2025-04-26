@@ -37,7 +37,7 @@ Cet guide vous montre comment configurer l'optimisation SEO dans un projet Nuxt 
 
 ### Installation de Base
 
-Installez le module SEO en exécutant la commande suivante dans votre terminal :
+Exécutez la commande suivante dans votre terminal pour installer le module SEO :
 
 ```sh
 npx nuxi@latest module add seo

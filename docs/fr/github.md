@@ -77,6 +77,7 @@ jobs:
       run: docker logout ghcr.io
 
 Déploy sur un VPS
+
 Pour le déploiment avec SSH nous utiliserons l’utilitaire GitHub Actions, appleboy.
 
 Connexion avec identifiant et mot de passe
