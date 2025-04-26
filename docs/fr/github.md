@@ -1,4 +1,4 @@
-<!-- Translated on 23/04/2025 -->
+<!-- Translated on 26/04/2025 -->
 
 ```markdown
 ---
@@ -76,7 +76,8 @@ jobs:
     - name: Logout from GHCR
       run: docker logout ghcr.io
 
-Déployer sur un VPS
+Déploy sur un VPS
+
 Pour le déploiment avec SSH nous utiliserons l’utilitaire GitHub Actions, appleboy.
 
 Connexion avec identifiant et mot de passe
@@ -109,4 +110,27 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Set lowercase repository owner
-      run: echo "REPO_OWNER=$(echo ${{ github.repository }} / / / / / / / / / / / / / / / / / / / / / / / / / / / / / / /
+      run: echo "REPO_OWNER=$(echo ${{ github.repository.name }}')"
+      # This is a placeholder, the actual value will depend on the repository name
+      # You'll need to adapt this to your specific repository.
+      # Example: echo "my-project"
+
+    - name: Build and push Api Docker image
+      run: |
+        docker build -t ghcr.io/${{ vars.REPO_OWNER }}/<TAG_NAME>:latest ./<APP_CODE>
+        docker push ghcr.io/${{ vars.REPO_OWNER }}/<TAG_NAME>:latest
+
+    - name: Logout from GHCR
+      run: docker logout ghcr.io
+
+Configurer les clés ssh pour GitHub documentation.
+
+Configurer sur le VPS
+Créer un fichier compose.prod.yaml
+./PROJECT_NAME/compose.prod.yaml
+services:
+  app:
+    image: ghcr.io/${{ vars.REPO_OWNER }}/<TAG_NAME>:latest
+    ports:
+    - "XXXX:XXXX"
+```

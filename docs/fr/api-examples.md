@@ -1,4 +1,4 @@
-<!-- Translated on 23/04/2025 -->
+<!-- Translated on 26/04/2025 -->
 
 ---
 outline: deep
@@ -8,7 +8,7 @@ outline: deep
 
 Cette page illustre l'utilisation de certaines API Runtime fournies par VitePress.
 
-L'API principale `useData()` peut être utilisée pour accéder aux données du site, de la thématique et de la page actuelle. Elle fonctionne dans les fichiers `.md` et `.vue`.
+L'API principale `useData()` peut être utilisée pour accéder aux données du site, de la thématique et de la page actuelles. Elle fonctionne dans les fichiers `.md` et `.vue`.
 
 ```md
 <script setup>
@@ -19,13 +19,13 @@ const { theme, page, frontmatter } = useData()
 
 ## Résultats
 
-### Données de Thématique
+### Données de la Thématique
 <pre>{{ theme }}</pre>
 
-### Données de Page
+### Données de la Page
 <pre>{{ page }}</pre>
 
-### Données de Frontmatter
+### Données de la Page Frontmatter
 <pre>{{ frontmatter }}</pre>
 ```
 
@@ -37,13 +37,13 @@ const { site, theme, page, frontmatter } = useData()
 
 ## Résultats
 
-### Données de Thématique
+### Données de la Thématique
 <pre>{{ theme }}</pre>
 
-### Données de Page
+### Données de la Page
 <pre>{{ page }}</pre>
 
-### Données de Frontmatter
+### Données de la Page Frontmatter
 <pre>{{ frontmatter }}</pre>
 
 ## Plus

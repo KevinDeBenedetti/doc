@@ -1,4 +1,4 @@
-<!-- Translated on 23/04/2025 -->
+<!-- Translated on 26/04/2025 -->
 
 ```
 # Hosting
@@ -22,6 +22,7 @@ ssh -i ~/.ssh/<key_name>.pub <username>@<ip_vps>
 ### Alias
 
 #### Create an alias
+
 In the file `~/.ssh/config`, create an alias with the private key.
 ```sh
 Host <alias_name>
@@ -32,6 +33,7 @@ Host <alias_name>
 ```
 
 #### Login with alias
+
 ```sh
 ssh <alias_name>
 ```
@@ -39,7 +41,7 @@ ssh <alias_name>
 ### Configure a ssh key
 
 1. Copy the public key on the remote server
-2. Configure automaticaly the rights
+2. Configure automatically the rights
 3. Add the key to the file `authorized_keys` on the remote server
 
 ```sh
@@ -59,6 +61,7 @@ scp -r -P <port> <file_name> <username>@<ip_vps>:~/
 ```
 
 ### Delete
+
 ```sh
 ssh-keygen -R <ip_vps>
 ```
