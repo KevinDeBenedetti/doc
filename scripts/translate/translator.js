@@ -21,18 +21,6 @@ function getCurrentDateFormatted() {
 }
 
 /**
- * Build or update frontmatter object
- */
-function buildFrontmatter(existing = {}) {
-  return {
-    ...existing,
-    translated: true,
-    translatedDate: getCurrentDateFormatted(),
-    verified: existing.verified === true
-  }
-}
-
-/**
  * Ensure a YAML frontmatter string from object
  */
 function stringifyFrontmatter(obj) {
@@ -63,7 +51,6 @@ function checkMarkdownStructure(original, translated) {
  */
 export async function translateMarkdownFile(inputPath, outputDir, lang) {
   const filename = path.basename(inputPath)
-  logger.info(`⏳ Processing ${filename} → ${lang}`)
 
   // Read the content
   const content = fs.readFileSync(inputPath, 'utf-8')
@@ -72,7 +59,10 @@ export async function translateMarkdownFile(inputPath, outputDir, lang) {
   let existingFM = {}
   let body = content
 
+  // logger.info(`🔍 Extracting frontmatter from ${body}`)
+
   const match = content.match(FRONTMATTER_REGEX)
+
   if (match) {
     try {
       const rawYaml = match[1].slice(4, -4)
@@ -81,45 +71,30 @@ export async function translateMarkdownFile(inputPath, outputDir, lang) {
       logger.warn(`Failed to parse frontmatter in ${filename}: ${err.message}`)
     }
     body = content.slice(match[0].length)
-  }
-
-  const translatedContent = fs.readFileSync(path.join(outputDir, filename), 'utf-8')
-  // Build new frontmatter
-  // const fmObj = buildFrontmatter(existingFM)
-  // const fmString = stringifyFrontmatter(fmObj)
-
-  // If already verified, skip translation
-  if (existingFM.verified === true) {
-    logger.info(`ℹ️  ${filename} marked verified, skipping translation.`)
-    const fmString = stringifyFrontmatter(fmObj)
-    const outContent = fmString + body.trimStart()
-    fs.mkdirSync(outputDir, { recursive: true })
-    fs.writeFileSync(path.join(outputDir, filename), outContent, 'utf-8')
-    logger.info(`✅ Wrote unmodified file: ${filename}`)
-    return
+    logger.info(`🔍 Body extracted from`)
   }
 
   const newFM = {
     ...existingFM,
+    translated: true,
     translatedDate: getCurrentDateFormatted(),
-    // On initialise verified à false si absent
     verified: false
   }
 
   const fmString = stringifyFrontmatter(newFM)
 
   // Translate the body
-  logger.info(`⏳ Translating ${filename}`)
-  // const translatedBody = await translateText(body, lang)
+  // logger.info(`⏳ Translating ${filename}`)
+  const translatedBody = await translateText(body, lang)
 
   // Verify structure
-  // checkMarkdownStructure(body, translatedBody)
+  checkMarkdownStructure(body, translatedBody)
 
   // Compose final content
-  // const finalContent = fmString + translatedBody.trimStart()
+  const finalContent = fmString + translatedBody.trimStart()
 
   // Write output
   fs.mkdirSync(outputDir, { recursive: true })
-  // fs.writeFileSync(path.join(outputDir, filename), finalContent, 'utf-8')
+  fs.writeFileSync(path.join(outputDir, filename), finalContent, 'utf-8')
   logger.info(`✅ Translated and saved: ${filename}`)
 }
