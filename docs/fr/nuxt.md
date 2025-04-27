@@ -6,37 +6,38 @@ translatedDate: 27/04/2025
 verified: false
 ---
 
-# Guide SEO Nuxt
+# Le Guide Nuxt
 
 ::: info
-[Nuxt Module](https://nuxt.com/modules/seo)<br>
+[Module Nuxt](https://nuxt.com/modules/seo)<br>
 [SEO](https://nuxtseo.com/)
 :::
 
-<Badge type="tip" text="@nuxtjs/sitemap" /> : Automatically generates an XML sitemap to assist search engine indexing of your pages.
+<Badge type="tip" text="@nuxtjs/sitemap" /> : Génère automatiquement un sitemap XML pour aider les moteurs de recherche à indexer vos pages.
 <br>
 <br>
-<Badge type="tip" text="@nuxtjs/robots" /> : Creates a robots.txt file to manage crawler access.
+<Badge type="tip" text="@nuxtjs/robots" /> : Crée un fichier robots.txt pour gérer l'accès des robots d'exploration.
 <br>
 <br>
-<Badge type="tip" text="nuxt-schema-org" /> : Easily integrates JSON-LD schema tags to enhance search results.
+<Badge type="tip" text="nuxt-schema-org" /> : Intègre facilement les balises JSON-LD schema pour améliorer les résultats de recherche.
 <br>
 <br>
-<Badge type="tip" text="nuxt-seo-experiments" /> : Allows experimentation with various SEO optimizations.
+<Badge type="tip" text="nuxt-seo-experiments" /> : Permet d'expérimenter avec diverses optimisations SEO.
 <br>
 <br>
-<Badge type="tip" text="nuxt-og-image" /> : Generates images for social media previews.
+<Badge type="tip" text="nuxt-og-image" /> : Génère des images pour les aperçus des réseaux sociaux.
 <br>
 <br>
-<Badge type="tip" text="nuxt-link-checker" /> : Checks link validity to prevent 404 errors.
+<Badge type="tip" text="nuxt-link-checker" /> : Vérifie la validité des liens pour éviter les erreurs 404.
+<br>
 
-This guide demonstrates how to configure SEO within a Nuxt project using various popular modules to enhance your site's visibility in search engine results.
+Ce guide vous montre comment configurer le SEO dans un projet Nuxt en utilisant divers modules populaires pour optimiser la visibilité de votre site sur les moteurs de recherche.
 
-## Installation of SEO Modules
+## Installation des Modules SEO
 
-### Basic Installation
+### Installation de Base
 
-Run the following command in your terminal to install the SEO module:
+Installez le module SEO en exécutant la commande suivante dans votre terminal :
 
 ```sh
 npx nuxi@latest module add seo
