@@ -4,30 +4,28 @@ translatedDate: 27/04/2025
 verified: true
 ---
 
-```
-# Hosting
+# Hébergement
 
-::: details Table of content
+::: details Table des matières
 [[toc]]
 :::
 
 ## SSH
 
-### Login
+### Connexion
 ```sh
 ssh <username>@<ip_vps>
 ```
 
-### Login with key
+### Connexion avec clé
 ```sh
 ssh -i ~/.ssh/<key_name>.pub <username>@<ip_vps>
 ```
 
 ### Alias
 
-#### Create an alias
-
-In the file `~/.ssh/config`, create an alias with the private key.
+#### Créer un alias
+Dans le fichier `~/.ssh/config`, créer un alias avec la clé privée.
 ```sh
 Host <alias_name>
   Hostname <ip_vps>
@@ -36,76 +34,74 @@ Host <alias_name>
   IdentitiesOnly yes
 ```
 
-#### Login with alias
-
+#### Connexion avec alias
 ```sh
 ssh <alias_name>
 ```
 
-### Configure a ssh key
+### Configurer une clé SSH
 
-1. Copy the public key on the remote server
-2. Configure automatically the rights
-3. Add the key to the file `authorized_keys` on the remote server
+1. Copier la clé publique sur le serveur distant
+2. Configurer automatiquement les droits
+3. Ajouter la clé dans le fichier `authorized_keys` sur le serveur distant
 
 ```sh
 ssh-copy-id -i ~/.ssh/<key_name>.pub <username>@<ip_vps>
 ```
 
-### Copy
+### Copie
 
-#### Copy a file with ssh
+#### Copier un fichier avec SSH
 ```sh
 scp -r <file_name> <username>@<ip_vps>:~/
 ```
 
-#### Copy a file with ssh, on a personnalize port
+#### Copier un fichier avec SSH, sur un port personnalisé
 ```sh
 scp -r -P <port> <file_name> <username>@<ip_vps>:~/
 ```
 
-### Delete
-
+### Suppression
 ```sh
 ssh-keygen -R <ip_vps>
 ```
 
-### Login to a remote a server
+### Connexion à un serveur distant
 
-1. Create a ssh key
-Create a pair of ssh keys on local.
+1. Créer une clé SSH
+Créer une paire de clés SSH sur local.
 ```sh
 ssh-keygen -t rsa -b 4096 -C "email@email.email" -f ~/.ssh/<key_name>
 ```
 
-2. Add the ssh public key on the remote server
-Copy the key with this command.
+2. Ajouter la clé publique SSH sur le serveur distant
+Copier la clé avec cette commande.
 ```sh
 pbcopy < ~/.ssh/<key_name>.pub
 ```
 
-3. Login to the vps
+3. Connexion au VPS
 ```sh
 ssh -i ~/.ssh/<key_name> root@<ip_vps>
 ```
 
-### Authorized a key in the `authorised_keys` file
+### Autoriser une clé dans le fichier `authorised_keys`
 ```sh
 echo "<public_keys>" >> ~/.ssh/authorised_keys
 ```
 
-## Firewall
+## Pare-feu
 
-The firewall is a security system that filters incoming and outgoing connections.
+Le pare-feu est un système de sécurité qui filtre les connexions entrantes et sortantes.
 
-- Incoming traffic : Allow only the ports required.
-- Outbound traffic : Generally, allow everything except for specific needs.
+- Trafic entrant : Autoriser uniquement les ports requis.
+- Trafic sortant : Généralement, autoriser tout, sauf les besoins spécifiques.
 
-### Necessary rules
+### Règles nécessaires
 
-| Protocol | PORT |
+| Protocole | PORT |
 |:--------:|:----:|
-| SSH      | 22  |
+| SSH      | 22   |
 | HTTP     | 80   |
 | HTTPS    | 443  |
 | DNS      | 53   |
@@ -114,19 +110,18 @@ The firewall is a security system that filters incoming and outgoing connections
 | POP3     | 110  |
 | FTP      | 21   |
 
-### Incoming traffic
+### Trafic entrant
 
-| Protocol | Source IP | Source Port | Destination IP |	Destination Port | Action |
+| Protocole | Source IP | Source Port | Destination IP | Destination Port | Action |
 |:--------:|:---------:|:-----------:|:--------------:|:----------------:|:------:|
-| TCP      | 0.0.0.0/0 | Any         |	VPS IP        |	22 / SSH	       | ACCEPT |
-| TCP      | 0.0.0.0/0 | Any         |	VPS IP        |	80 / HTTP	       | ACCEPT |
-| TCP      | 0.0.0.0/0 | Any         | 0.0.0.0/0      |	Any     	       | ACCEPT |
+| TCP      | 0.0.0.0/0 | Any         | VPS IP        | 22 / SSH       | ACCEPT |
+| TCP      | 0.0.0.0/0 | Any         | VPS IP        | Any            | ACCEPT |
 
-### Outbound traffic
+### Trafic sortant
 
-| Protocol | Source IP | Source Port | Destination IP |	Destination Port | Action |
+| Protocole | Source IP | Source Port | Destination IP | Destination Port | Action |
 |:--------:|:---------:|:-----------:|:--------------:|:----------------:|:------:|
-| All      | VPS IP    | Any         | 0.0.0.0/0      |	Any     	       | ACCEPT |
+| All      | VPS IP    | Any         | 0.0.0.0/0      | Any     | ACCEPT |
 
 
 ## Dokploy
@@ -135,12 +130,12 @@ The firewall is a security system that filters incoming and outgoing connections
 
 #### Telegram
 
-  1. Name : enter a name for the bot.
-  2. Bot Token : enter the bot token. Available on the Telegram app in @BotFather. Enter the bot.
-  3. Chat ID : enter the chat ID. Pour récuperer l’ID du channel, aller sur https://api.telegram.org/bot<BOT_TOKEN>/getUpdates
+  1. Nom : Entrez un nom pour le bot.
+  2. Token du bot : Entrez le token du bot. Disponible sur l'application Telegram à @BotFather. Entrez le bot.
+  3. ID du chat : Entrez l'ID du chat. Pour récupérer l'ID du channel, aller sur https://api.telegram.org/bot<BOT_TOKEN>/getUpdates
 
 ::: tip Ressources
-[GitHub](https://gist.github.com/nafiesl/4ad622f344cd1dcbb1ecbe468ff9f8a)
+[GitHub](https://gist.github.com/nafiesl/4ad622f344cd1dc3bb1ecbe468ff9f8a)
 
 [Documentation](https://docs.dokploy.com/docs/core/telegram)
 :::

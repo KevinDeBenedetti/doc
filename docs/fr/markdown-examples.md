@@ -6,11 +6,11 @@ verified: true
 
 # Exemples d'Extensions Markdown
 
-Cette page illustre quelques extensions Markdown intégrées par VitePress.
+Cette page démontre certaines des extensions Markdown intégrées fournies par VitePress.
 
-## Highlighting de la Syntax
+## Mise en évidence du code
 
-VitePress fournit le Highlighting de la Syntax basé sur [Shiki](https://github.com/shikijs/shiki), avec des fonctionnalités supplémentaires comme le soulignement de ligne :
+VitePress fournit la mise en évidence du code grâce à [Shiki](https://github.com/shikijs/shiki), avec des fonctionnalités supplémentaires telles que l'éclaircissage des lignes :
 
 **Entrée**
 
@@ -24,6 +24,7 @@ export default {
   }
 }
 ```
+````
 
 **Sortie**
 
@@ -43,14 +44,14 @@ export default {
 
 ```md
 ::: info
-Ceci est une boîte d'information.
+Ceci est une boîte d'informations.
 :::
 
 ::: tip
-Ceci est un point de vente.
+Ceci est un conseil.
 :::
 
-::: avertissement
+::: warning
 Ceci est un avertissement.
 :::
 
@@ -58,7 +59,7 @@ Ceci est un avertissement.
 Ceci est un avertissement dangereux.
 :::
 
-::: détails
+::: details
 Ceci est un bloc de détails.
 :::
 ```
@@ -66,14 +67,14 @@ Ceci est un bloc de détails.
 **Sortie**
 
 ::: info
-Ceci est une boîte d'information.
+Ceci est une boîte d'informations.
 :::
 
 ::: tip
-Ceci est un point de vente.
+Ceci est un conseil.
 :::
 
-::: avertissement
+::: warning
 Ceci est un avertissement.
 :::
 
@@ -81,10 +82,11 @@ Ceci est un avertissement.
 Ceci est un avertissement dangereux.
 :::
 
-::: détails
+::: details
 Ceci est un bloc de détails.
 :::
 
 ## Plus
 
-Consultez la documentation pour la liste complète des extensions Markdown ([complète liste des extensions Markdown](https://vitepress.dev/guide/markdown)).
+Consultez la documentation pour la [liste complète des extensions Markdown](https://vitepress.dev/guide/markdown).
+```

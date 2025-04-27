@@ -5,10 +5,9 @@ translatedDate: 27/04/2025
 verified: true
 ---
 
-```
-# Docker documentation
+# Documentation Docker
 
-## Basics commands
+## Basics Commands
 
 ### Show
 
@@ -87,6 +86,11 @@ docker image prune
 docker prune
 ```
 
+#### Unused networks
+```sh
+docker network prune
+```
+
 ### Clean
 
 #### Delete all unused objects (containers, images, volumes and networks)
@@ -129,4 +133,108 @@ docker run --name <container_name> -p 3000:3000 <image_name>
 ```sh
 docker load --input <file_name>.tar
 ```
+
+## Network
+
+### Create a docker network
+
+```sh
+docker network create --subnet 172.20.0.0/16 <network_name>
+```
+
+### Show networks
+```sh
+docker network ls
+```
+
+### Show a network detail
+```sh
+docker network inspect <network_name>
+```
+
+### Link a network to a container
+```sh
+docker network connect --ip 172.20.0.5 <network_name> <container_name>
+```
+
+## Stack
+
+### List services from a stack
+```sh
+docker stack services <stack_name>
+```
+
+### Show logs
+```sh
+docker service logs <stack_name_service>
+```
+Use `-f` attribute to show logs in real time.
+
+### Delete a stack
+```sh
+docker stack rm <stack_name>
+```
+
+## Dockerfile examples
+
+### Fast API
+
+### Production
+
+::: code-group
+
+```dockerfile [Dockerfile]
+# syntax=docker/dockerfile:1
+ARG NODE_VERSION=21.0.0
+
+FROM node:16-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 80
+
+CMD ["npm", "start"]
+```
+
+```yml [docker-compose.prod.yml]
+version: "3.9"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+```
+:::
+
+::: tip Run the production environment
+```sh
+docker compose -f docker-compose.prod.yml up --build
+```
+:::
+
+### Fast API
+```dockerfile
+FROM python:3.9
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+COPY . .
+
+EXPOSE 80
+
+CMD ["python", "api/main.py"]
 ```

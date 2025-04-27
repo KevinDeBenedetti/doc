@@ -3,7 +3,7 @@ title: Nuxt
 description: Guide for setting up your Nuxt project.
 translated: true
 translatedDate: 27/04/2025
-verified: false
+verified: true
 ---
 
 # Le Guide Nuxt
