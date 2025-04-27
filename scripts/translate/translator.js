@@ -59,8 +59,6 @@ export async function translateMarkdownFile(inputPath, outputDir, lang) {
   let existingFM = {}
   let body = content
 
-  // logger.info(`🔍 Extracting frontmatter from ${body}`)
-
   const match = content.match(FRONTMATTER_REGEX)
 
   if (match) {
@@ -84,7 +82,6 @@ export async function translateMarkdownFile(inputPath, outputDir, lang) {
   const fmString = stringifyFrontmatter(newFM)
 
   // Translate the body
-  // logger.info(`⏳ Translating ${filename}`)
   const translatedBody = await translateText(body, lang)
 
   // Verify structure
