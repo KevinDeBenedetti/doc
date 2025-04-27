@@ -11,7 +11,10 @@ export const fr = defineConfig({
         text: 'Environment & Tools',
         collapsed: true,
         items: [
+          { text: 'Docker', link: '/fr/docker/' },
           { text: 'Git', link: '/fr/git/' },
+          { text: 'GitHub', link: '/fr/github/' },
+          { text: 'Hosting', link: '/fr/hosting/' },
         ]
       },
       {

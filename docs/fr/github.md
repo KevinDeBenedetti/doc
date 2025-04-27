@@ -5,39 +5,38 @@ translatedDate: 27/04/2025
 verified: true
 ---
 
-```
-# GitHub Documentation
+# Documentation du Registre de Conteneurs GitHub
 
 ## GHCR
 
-### Commands
+### Commandes
 
-#### Generate a Personal Access Token (PAT)
-In GitHub settings, generate a PAT with the right packages.
+#### Générer un Token d'Accès Personnel (PAT)
+Dans les paramètres GitHub, générer un PAT avec les packages appropriés.
 
-Connect to GitHub account, `Settings`, `Developer settings`. In `Developer settings`, in `Personal access tokens` choose Tokens (classic) and generate a new token with rights (duration and authorization read:packages)
+Se connecter au compte GitHub, `Settings`, `Developer settings`. Dans `Developer settings`, dans `Personal access tokens` choisir Tokens (classic) et générer un nouveau token avec les droits (durée et autorisation lecture:packages).
 
-#### Login to GHCR with Docker
+#### Connexion à GHCR avec Docker
 ```sh
 echo "<TOKEN>" | docker login ghcr.io -u <USERNAME> --password-stdin
 ```
 
-#### Download and execute an image
+#### Télécharger et exécuter une image
 ```sh
 docker pull ghcr.io/<USERNAME>/<IMAGE_NAME>
 docker run -d -p <PORT_HOST>:<PORT_CONTAINER> ghcr.io/<USERNAME>/<IMAGE_NAME>
 ```
 
-#### Logout from GHCR
+#### Déconnexion de GHCR
 ```sh
 docker logout ghcr.io
 ```
 
 ## GitHub Actions
 
-### Push and deploy images with GHCR
+### Pousser et déployer des images avec GHCR
 
-Create a workflow `.github/workflows/ghcr.yaml`.
+Créer un workflow `.github/workflows/ghcr.yaml`.
 
 ```yml
 name: GitHub Container Registry
@@ -56,12 +55,12 @@ jobs:
       attestations: write
       id-token: write
 
-    # Verify the repository
+    # Vérifier le référentiel
     steps:
-    - name: Checkout repository
+    - name: Checkout référentiel
       uses: actions/checkout@v4
 
-    # Login GHCR
+    # Connexion GHCR
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v3
       with:
@@ -69,67 +68,69 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build and push Api Docker image
+    - name: Construire et pousser l'image Api Docker
       run: |
         docker build -t ghcr.io/${{ vars.REPO_OWNER }}/<TAG_NAME>:latest ./<APP_CODE>
         docker push ghcr.io/${{ vars.REPO_OWNER }}/<TAG_NAME>:latest
 
+    # Déconnexion GHCR
     - name: Logout from GHCR
       run: docker logout ghcr.io
+```
 
-Déploy sur un VPS
-Pour le déploiment avec SSH nous utiliserons l’utilitaire GitHub Actions, appleboy.
-
-Connexion avec identifiant et mot de passe
+```yml
 .github/workflows/ghcr.yaml
-name: GitHub Container Registry
+...
 
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  ghcr:
+  deploy:
+    needs: [ghcr]
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      packages: write
-      attestations: write
-      id-token: write
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+        - name: Déployer en utilisant ssh
+          uses: appleboy/ssh-action@v1.0.3
+          with:
+            host: ${{ secrets.SSH_HOST }}
+            username: ${{ secrets.SSH_USERNAME }}
+            password: ${{ secrets.SSH_PASSWORD }}
+            port: ${{ secrets.SSH_PORT }}
+            script: |
+              echo ${{ secrets.GHCR_PAT }} | docker login ghcr.io -u ${{ github.REPOSITORY_OWNER }} --password-stdin
+              docker pull ghcr.io/${{ env.REPO_OWNER }}/<TAG_NAME>:latest
+              docker compose.prod.yaml
+              docker logout ghcr.io
+```
 
-    - name: Log in to GitHub Container Registry
-      uses: docker/login-action@v3
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+```yml
+.github/workflows/ghcr.yaml
+...
 
-    - name: Set lowercase repository owner
-      run: echo "REPO_OWNER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-      env:
-        REPO_OWNER: ${{ secrets.GITHUB_TOKEN }}
+  deploy:
+    needs: [ghcr]
+    runs-on: ubuntu-latest
+    steps:
+        - name: Déployer en utilisant ssh
+          uses: appleboy/ssh-action@v1.0.3
+          with:
+            host: ${{ secrets.SSH_HOST }}
+            username: ${{ secrets.SSH_USERNAME }}
+            key: ${{ secrets.SSH_KEY }}
+            port: ${{ secrets.SSH_PORT }}
+            script: |
+              echo ${{ secrets.GHCR_PAT }} | docker login ghcr.io -u ${{ github.REPOSITORY_OWNER }} --password-stdin
+              docker pull ghcr.io/${{ env.REPO_OWNER }}/<TAG_NAME>:latest
+              docker compose.prod.yaml
+              docker logout ghcr.io
+```
 
-    - name: Build and push Api Docker image
-      run: |
-        docker build -t ghcr.io/${{ vars.REPO_OWNER }}/<TAG_NAME>:latest ./<APP_CODE>
-        docker push ghcr.io/${{ vars.REPO_OWNER }}/<TAG_NAME>:latest
-
-    - name: Logout from GHCR
-      run: docker logout ghcr.io
-
-Configurer les clés ssh pour GitHub documentation.
+Configurer les clés ssh pour la documentation GitHub.
 
 Configurer sur le VPS
 Créer un fichier compose.prod.yaml
+```yml
 ./PROJECT_NAME/compose.prod.yaml
 services:
   app:
-    image: ghcr.io/${{ vars.REPO_OWNER }}/<TAG_NAME>:latest
+    image: ghcr.io/${{ env.REPO_OWNER }}/<TAG_NAME>:latest
     ports:
     - "XXXX:XXXX"
 ```

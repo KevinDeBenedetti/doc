@@ -4,185 +4,185 @@ translatedDate: 27/04/2025
 verified: true
 ---
 
-# Commands
+# Commandes
 
-## Initial Configuration
+## Configuration initiale
 
-> Define a name
+> Définir un nom
 ```bash
-git config --global user.name "Your name"
+git config --global user.name "Votre nom"
 ```
 
-> Define an email
+> Définir une adresse e-mail
 ```bash
-git config user.email "your@email.com"
+git config user.email "votre@email.com"
 ```
 
-***This config is necessary for commits.***
+***Cette configuration est nécessaire pour les commits.***
 
-## Start a Project
+## Démarrer un projet
 
-> Init a repository in the current folder
+> Initialiser un dépôt dans le dossier courant
 ```bash
 git init
 ```
 
-> Clone an existing repository
+> Cloner un dépôt existant
 ```bash
 git clone https://github.com/user/repo.git
 ```
 
 ## Workflow
 
-> View the status of modified files
+> Afficher l'état des fichiers modifiés
 ```bash
 git status
 ```
 
-> Add a file to track
+> Ajouter un fichier à suivre
 ```bash
 git add file.txt
 ```
 
-> Add all updated files
+> Ajouter tous les fichiers mis à jour
 ```bash
 git add .
 ```
 
-> Add changes
+> Ajouter des modifications
 ```bash
-git commit -m "Description message"
+git commit -m "Message de description"
 ```
 
-> Push to remote repository
+> Pousser vers le dépôt distant
 ```bash
 git push origin main
 ```
 
-> Retrieve the updates
+> Récupérer les mises à jour
 ```bash
 git pull
 ```
 
 ## Branches
 
-> Show the current branch
+> Afficher la branche courante
 ```bash
 git branch
 ```
 
-> List all branches
+> Lister toutes les branches
 ```bash
 git branch -a
 ```
 
-> Create a new branch
+> Créer une nouvelle branche
 ```bash
 git branch new-branch
 ```
 
-> Switch branches
+> Basculer entre les branches
 ```bash
 git checkout branch-name
 ```
 
-> Create and Switch on a branch
+> Créer et basculer vers une branche
 ```bash
 git checkout -b branch-name
 ```
 
-> Merge a branch
+> Fusionner une branche
 ```bash
 git merge branch-name
 ```
 
 ## Collaboration
 
-> Add a new remote repository
+> Ajouter un nouveau dépôt distant
 ```bash
 git remote add origin https://github.com/user/repo.git
 ```
 
-> List remote repositories
+> Lister les dépôts distants
 ```bash
 git remote -v
 ```
 
-> Retrieve changes without merging
+> Récupérer les modifications sans fusionner
 ```bash
 git fetch
 ```
 
-## History
+## Historique
 
-> View history of commits
+> Afficher l'historique des commits
 ```bash
 git log
 ```
 
-> See the differences between files
+> Voir les différences entre les fichiers
 ```bash
 git diff
 ```
 
-> Cancel a modified file (before commit)
+> Annuler une modification d'un fichier (avant commit)
 ```bash
 git restore file.txt
 ```
 
-## Useful Commands
+## Commandes utiles
 
-> Stash (save temporarily)
+> Stash (sauvegarder temporairement)
 ```bash
 git stash
 ```
 
-> Apply a stash
+> Appliquer un stash
 ```bash
 git stash pop
 ```
 
-> Delete a file from the trace
+> Supprimer un fichier du suivi
 ```bash
 git rm file.txt
 ```
 
-> Rename / Move a file
+> Renommer / Déplacer un fichier
 ```bash
 git mv old-name new-name
 ```
 
-> Create a tag
+> Créer une étiquette
 ```bash
 git tag v1.0.0
 ```
 
-> Reminder
+> Rappel
 ```bash
 git help [commande]
 ```
 
 ## `Pull Request`
 
-> Create PR
+> Créer une PR
 ```bash
-gh pr create --title "New functionality" --body "Detailed description" --base <branch>
+gh pr create --title "Nouvelle fonctionnalité" --body "Description détaillée" --base <branche>
 ```
-- `title`: title of the PR.
-- `--body`: modifications description.
-- `--base`: the vised branch.
+- `title`: titre de la PR.
+- `--body`: description des modifications.
+- `--base`: la branche visée.
 
-You can also use this command, to launch the interactiv assistant without arguments.
+Vous pouvez également utiliser cette commande, pour lancer l'assistant interactif sans arguments.
 ```bash
 gh pr create
 ```
 
-> List opened PR
+> Lister les PR ouvertes
 ```bash
 gh pr list
 ```
 
-> Approuve a PR
+> Approuver une PR
 ```bash
-gh pr review <PR_NUMBER> --approve
+gh pr review <NUMERO_PR> --approve
 ```

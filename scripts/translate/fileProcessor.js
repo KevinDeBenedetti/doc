@@ -3,7 +3,6 @@ import path from 'path'
 import { parse } from 'yaml'
 import { translateMarkdownFile } from './translator.js'
 import { logger } from './logger.js'
-import { log } from 'console'
 
 /**
  * Regex to extract YAML frontmatter
@@ -53,7 +52,7 @@ export async function processDirectory(srcDir, outRoot, langs) {
       if (skip) continue
 
       try {
-        // logger.info(`⏳ Translating ${file} → ${lang}`)
+        logger.info(`⏳ Translating ${file} → ${lang}`)
         await translateMarkdownFile(filePath, outDir, lang)
       } catch (error) {
         logger.error(
