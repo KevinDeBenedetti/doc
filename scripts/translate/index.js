@@ -11,10 +11,7 @@ async function main() {
   logger.info("🚀 Starting translation process")
   await testOllamaConnection()
 
-  // const docsDir = path.join(__dirname, `../${defaultLanguage}`)
-  // console.log(docsDir)
   const srcDir = path.join(__dirname, `../../docs/${defaultLanguage}`)
-  console.log(srcDir)
   const outRoot = path.join(__dirname, '../../docs')
   const languages = Object.keys((await import('./languageSettings.js')).languageSettings)
 
