@@ -14,6 +14,12 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4.1.5
         version: 4.1.5
+      marked:
+        specifier: ^15.0.11
+        version: 15.0.11
+      ollama:
+        specifier: ^0.5.15
+        version: 0.5.15
       postcss:
         specifier: ^8.5.3
         version: 8.5.3
@@ -24,9 +30,6 @@ importers:
       axios:
         specifier: ^1.9.0
         version: 1.9.0
-      marked:
-        specifier: ^15.0.11
-        version: 15.0.11
       vitepress:
         specifier: ^1.6.3
         version: 1.6.3(@algolia/client-search@5.24.0)(axios@1.9.0)(lightningcss@1.29.2)(postcss@8.5.3)(search-insights@2.17.3)
@@ -989,6 +992,9 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  ollama@0.5.15:
+    resolution: {integrity: sha512-TSaZSJyP7MQJFjSmmNsoJiriwa3U+/UJRw6+M8aucs5dTsaWNZsBIGpDb5rXnW6nXxJBB/z79gZY8IaiIQgelQ==}
+
   one-time@1.0.0:
     resolution: {integrity: sha512-5DXOiRKwuSEcQ/l0kGCF6Q3jcADFv5tSmRaJck/OqkVFcOzutB134KRSfF0xDrL39MNnqxbHBbUUcjZIhTgb2g==}
 
@@ -1169,6 +1175,9 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  whatwg-fetch@3.6.20:
+    resolution: {integrity: sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==}
 
   winston-transport@4.9.0:
     resolution: {integrity: sha512-8drMJ4rkgaPo1Me4zD/3WLfI/zPdA9o2IipKODunnGDcuqbHwjsbB79ylv04LCGGzU0xQ6vTznOMpQGaLhhm6A==}
@@ -2064,6 +2073,10 @@ snapshots:
 
   nanoid@3.3.11: {}
 
+  ollama@0.5.15:
+    dependencies:
+      whatwg-fetch: 3.6.20
+
   one-time@1.0.0:
     dependencies:
       fn.name: 1.1.0
@@ -2288,6 +2301,8 @@ snapshots:
       '@vue/runtime-dom': 3.5.13
       '@vue/server-renderer': 3.5.13(vue@3.5.13)
       '@vue/shared': 3.5.13
+
+  whatwg-fetch@3.6.20: {}
 
   winston-transport@4.9.0:
     dependencies:
