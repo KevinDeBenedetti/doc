@@ -25,6 +25,13 @@ export const en = defineConfig({
           { text: 'Nuxt', link: '/nuxt/' },
         ]
       },
+      {
+        text: 'Artificial Intelligence',
+        collapsed: true,
+        items: [
+          { text: 'Ollama', link: '/ollama/' },
+        ]
+      }
     ],
   },
 })

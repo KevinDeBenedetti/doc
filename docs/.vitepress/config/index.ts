@@ -33,4 +33,9 @@ export default defineConfig({
     root: { label: 'English', ...en },
     fr: { label: 'Français', ...fr }
   },
+
+  vite: {
+    optimizeDeps: { include: ['ollama/browser'] },
+    ssr: { noExternal: ['ollama/browser'] },
+  }
 })
