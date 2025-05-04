@@ -3,6 +3,7 @@
   "type": "module",
   "devDependencies": {
     "axios": "^1.9.0",
+    "marked": "^15.0.11",
     "vitepress": "^1.6.3",
     "winston": "^3.17.0",
     "yaml": "^2.7.1"

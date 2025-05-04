@@ -2,12 +2,13 @@
 title: Docker
 translated: true
 translatedDate: 27/04/2025
-verified: true
+verified: false
 ---
 
-# Documentation Docker
+```markdown
+# Docker documentation
 
-## Basics Commands
+## Basics commands
 
 ### Show
 
@@ -168,7 +169,7 @@ docker stack services <stack_name>
 ```sh
 docker service logs <stack_name_service>
 ```
-Use `-f` attribute to show logs in real time.
+Utilisez l'option `-f` pour afficher les logs en temps réel.
 
 ### Delete a stack
 ```sh
@@ -177,7 +178,7 @@ docker stack rm <stack_name>
 
 ## Dockerfile examples
 
-### Fast API
+### Nuxt JS
 
 ### Production
 
@@ -187,38 +188,97 @@ docker stack rm <stack_name>
 # syntax=docker/dockerfile:1
 ARG NODE_VERSION=21.0.0
 
-FROM node:16-alpine
+ARG PORT=3000
+
+FROM node:${NODE_VERSION}-alpine as base
 
 WORKDIR /app
 
-COPY package*.json ./
+FROM base as build
 
-RUN npm install
+COPY package.json /app/
+COPY pnpm-lock.yaml /app/
 
-COPY . .
+# Install pnpm
+RUN npm install -g pnpm
 
-EXPOSE 80
+# Install all dependencies
+RUN pnpm install
 
-CMD ["npm", "start"]
+ADD . /app
+
+RUN pnpm run build
+
+FROM base
+
+EXPOSE $PORT
+
+COPY --from=build /app/.output /app/.output
+
+CMD ["node", ".output/server/index.mjs"]
 ```
 
-```yml [docker-compose.prod.yml]
-version: "3.9"
+```yml [docker-compose.yml]
 services:
-  web:
+  production:
+    platform: linux/amd64 # Add this code for Apple Silicon
     build:
       context: .
-      dockerfile: Dockerfile
     ports:
-      - "80:80"
-    environment:
-      - NODE_ENV=production
+      - "3001:3000"
+```
+
+:::
+
+### Development
+
+::: code-group
+
+```dockerfile [Dockerfile.dev]
+# syntax = docker/dockerfile:1
+
+ARG NODE_VERSION=20
+
+FROM node:${NODE_VERSION}-slim as base
+
+ENV NODE_ENV=development
+
+WORKDIR /src
+
+# Build
+FROM base as build
+
+COPY --link package.json package-lock.json .
+RUN npm install
+
+# Run
+FROM base
+
+COPY --from=build /src/node_modules /src/node_modules
+
+CMD [ "npm", "run", "dev" ]
+```
+
+```yml [docker-compose.dev.yml]
+volumes:
+  node_modules:
+services:
+  development:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - "3000:3000"
+      - "24678:24678"
+    volumes:
+      - .:/src
+      - node_modules:/src/node_modules
 ```
 :::
 
-::: tip Run the production environment
+::: tip Exécuter l'environnement de développement
 ```sh
-docker compose -f docker-compose.prod.yml up --build
+docker compose -f docker-compose.yml -f docker-compose.dev.yml up --build
 ```
 :::
 
@@ -234,7 +294,6 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY . .
 
-EXPOSE 80
-
-CMD ["python", "api/main.py"]
+CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]
+```
 ```
