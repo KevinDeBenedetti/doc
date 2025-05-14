@@ -12,60 +12,25 @@ The documentation is available in multiple languages.
 
 ### Translate content
 
-Local configuration (macOs, m2, homebrew, pnpm)
+Translations are executed on a local computer using Ollama, [official repository](https://github.com/ollama/ollama).
 
-#### Use Ollama
-
-> Install Ollama with Homebrew, [link](https://formulae.brew.sh/formula/ollama#default)
 ```sh
-brew install ollama
-```
-> Run a model (gemma3)
-```sh
-ollama run gemma3
-```
-> List models
-```sh
-ollama list
+./scripts
+└── translate
+    ├── apiClient.js
+    ├── fileProcessor.js
+    ├── index.js
+    ├── languageSettings.js
+    ├── logger.js
+    ├── translate.cjs
+    └── translator.js
 ```
 
-#### Scripts
-
-> Create and copy `/scripts/translate.js`
-> Configure your model
-```js
-...
-const model = 'gemma3'; // Choose your Ollama model
-...
-```
-> Configure your languages
-```js
-...
-/**
- * Language precision settings for target languages.
- */
-const languageSettings = {
-  fr: {
-    name: 'French',
-    precision: 'Translate to French in a technical and clear style without any introductory commentary or additional explanation'
-  },
-  ...
-};
-...
-```
-> Update `package.json`
-```js
-...
-  "scripts": {
-    ...
-    "translate": "node scripts/translate.js"
-  },
-...
-```
 > Run translation on local
 ```sh
 pnpm translate
 ```
+
 > Validate a file
 ```html
 ---
@@ -75,8 +40,7 @@ verified: default false, update to true after review
 ```
 Add this comment on the top of the markdown file.
 
-
-## Commands for the project
+## ⚙️ Projet
 
 ### Start
 ```bash

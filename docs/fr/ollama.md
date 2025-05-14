@@ -1,13 +1,11 @@
 ---
 title: Ollama
-description: Guide for setting up your Ollama.
+description: Guide pour utiliser Ollama.
 translated: true
-translatedDate: 14/05/2025
-verified: false
+translatedDate: 15/05/2025
+verified: true
 ---
 
-```markdown
-Please **préserver** exactement tous les marqueurs <!--CODE_n-->, <!--CG_n-->, <!--HEADER_n--> et ne pas les modifier ou les traduire. 
 <script setup lang="ts">
 import OllamaBrowser from '../.vitepress/theme/components/OllamaBrowser.vue'
 </script>
@@ -41,4 +39,3 @@ ollama run gemma3:1b
 :::
 
 <OllamaBrowser />
-```
