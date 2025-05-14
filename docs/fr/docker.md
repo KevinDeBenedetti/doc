@@ -1,187 +1,180 @@
 ---
 title: Docker
 translated: true
-translatedDate: 27/04/2025
-verified: false
+translatedDate: 14/05/2025
+verified: true
 ---
 
-```markdown
-# Docker documentation
+# Documentation Docker
 
-## Basics commands
+## Commandes de base
 
-### Show
+### Montrer
 
-#### Show running containers
+> Afficher les conteneurs en cours d'exécution
 ```sh
 docker ps
 ```
 
-#### Show stopped containers
+> Afficher les conteneurs arrêtés
 ```sh
 docker ps -a
 ```
 
-#### Show images
+> Afficher les images
 ```sh
 docker images
 ```
 
-#### Go to the terminal of a running container
+> Accéder au terminal d'un conteneur en cours d'exécution
 ```sh
-docker exec -it <container_name> sh
+docker exec -it <container_name> sh # or bash
 ```
 
-```sh
-docker exec -it <container_name> bash
-```
+### Monter
 
-### Mount
-
-#### Mount an image
+> Monter une image
 ```sh
 docker build <image_name>
 ```
 
-#### Mount with docker compose
+> Monter avec docker compose
 ```sh
 docker compose up -d
 ```
 
-### Save
+### Sauvegarder
 
-#### Create a locale save of a container
+> Créer une sauvegarde d'un conteneur
 ```sh
 docker save -o <save_name>.tar <image_name>
 ```
 
-### Delete
+### Supprimer
 
-#### A stopped container by id
+> Un conteneur arrêté par ID
 ```sh
 docker rm <container_id>
 ```
 
-#### All stopped containers
+> Tous les conteneurs arrêtés
 ```sh
 docker rm $(docker ps -a -q)
 ```
 
-#### All containers not started
+> Tous les conteneurs non démarrés
 ```sh
 docker rm $(sudo docker ps -a -q -f 'status=exited')
 ```
 
-#### Unused image by id
+> Image inutilisée par ID
 ```sh
 docker rmi <image_id>
 ```
 
-#### All unused images (not associated to a container)
+> Toutes les images inutilisées (non associées à un conteneur)
 ```sh
 docker image prune
 ```
 
-#### Unused volumes
+> Volumes inutilisés
 ```sh
 docker prune
 ```
 
-#### Unused networks
+> Réseaux inutilisés
 ```sh
 docker network prune
 ```
 
-### Clean
+### Nettoyer
 
-#### Delete all unused objects (containers, images, volumes and networks)
+> Supprimer tous les objets inutilisés (conteneurs, images, volumes et réseaux)
 ```sh
 docker system prune
 ```
 
-#### Delete all unused objects, with running containers
+> Supprimer tous les objets inutilisés, avec des conteneurs en cours d'exécution
 ```sh
 docker system prune -a
 ```
 
-#### Complete cleaning
+> Nettoyage complet
 ```sh
 docker system prune --volumes -a
 ```
 
-### Mount
+### Monter
 
-#### Mount an image with a `Dockerfile`
+> Monter une image avec un `Dockerfile`
 ```sh
 docker build -t <image_name> .
 ```
 
-### Run
+### Exécuter
 
-#### Run an image
+> Exécuter une image
 ```sh
 docker run --name <container_name> <image_name>
 ```
 
-#### Run an image on a port
+> Exécuter une image sur un port
 ```sh
 docker run --name <container_name> -p 3000:3000 <image_name>
 ```
 
-### Load
+### Charger
 
-#### Load an image from a `.tar` file
+> Charger une image à partir d'un fichier `.tar`
 ```sh
 docker load --input <file_name>.tar
 ```
 
 ## Network
 
-### Create a docker network
-
+> Créer un réseau Docker
 ```sh
 docker network create --subnet 172.20.0.0/16 <network_name>
 ```
 
-### Show networks
+> Afficher les réseaux
 ```sh
 docker network ls
 ```
 
-### Show a network detail
+> Afficher les détails d'un réseau
 ```sh
 docker network inspect <network_name>
 ```
 
-### Link a network to a container
+> Lier un réseau à un conteneur
 ```sh
 docker network connect --ip 172.20.0.5 <network_name> <container_name>
 ```
 
 ## Stack
 
-### List services from a stack
+> Lister les services d'une stack
 ```sh
 docker stack services <stack_name>
 ```
 
-### Show logs
+> Afficher les logs
 ```sh
 docker service logs <stack_name_service>
 ```
-Utilisez l'option `-f` pour afficher les logs en temps réel.
+Utiliser l'attribut `-f` pour afficher les logs en temps réel.
 
-### Delete a stack
+> Supprimer une stack
 ```sh
 docker stack rm <stack_name>
 ```
 
-## Dockerfile examples
+## Exemples Dockerfile
 
 ### Nuxt JS
 
-### Production
-
+> Production
 ::: code-group
 
 ```dockerfile [Dockerfile]
@@ -230,8 +223,7 @@ services:
 
 :::
 
-### Development
-
+> Développement
 ::: code-group
 
 ```dockerfile [Dockerfile.dev]
@@ -295,5 +287,4 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 COPY . .
 
 CMD ["uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "80"]
-```
 ```

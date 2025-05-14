@@ -14,11 +14,11 @@
     "translate": "node scripts/translate/index.js"
   },
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.5",
+    "@tailwindcss/postcss": "^4.1.6",
     "marked": "^15.0.11",
     "ollama": "^0.5.15",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.5"
+    "tailwindcss": "^4.1.6"
   },
   "pnpm": {
     "overrides": {
