@@ -5,9 +5,8 @@ services:
     working_dir: /app
     build:
       context: .
-      dockerfile: Dockerfile.vitepress
+      dockerfile: Dockerfile
       target: dev
-    # image: mirai/front:dev
     volumes:
       - .:/app
       - /app/node_modules
@@ -16,3 +15,15 @@ services:
     ports:
     - 5173:5173
     attach: true
+
+  # translator:
+  #   container_name: translator-py
+  #   restart: always
+  #   working_dir: /app
+  #   build:
+  #     context: ./scripts/translate-py
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./scripts/translate-py:/app
+  #     - ./scripts/translate-py/.venv:/app/.venv
+  #   attach: true
