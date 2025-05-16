@@ -46,3 +46,19 @@ Add this comment on the top of the markdown file.
 ```bash
 pnpm run docs:dev
 ```
+
+## 🚧 In progress
+
+### Python / Typer
+
+```sh
+# Go to directy
+cd scripts/translate-py/
+
+# Virtual env
+python -m venv .venv
+source .venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
