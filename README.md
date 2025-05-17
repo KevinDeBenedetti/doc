@@ -56,7 +56,7 @@ pnpm run docs:dev
 cd scripts/translate-py/
 
 # Virtual env
-python -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 
 # Install dependencies

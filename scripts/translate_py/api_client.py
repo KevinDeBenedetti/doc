@@ -1,5 +1,6 @@
 import requests
 import typer
+
 app = typer.Typer()
 
 OLLAMA_URL = "http://localhost:11434"
