@@ -1,3 +1,4 @@
 {
-  "python.defaultInterpreterPath": "scripts/translate-py/.venv/bin/python"
+  "python.defaultInterpreterPath": "scripts/translate-py/.venv/bin/python",
+  "vue.server.includeLanguages": ["vue", "markdown"],
 }
