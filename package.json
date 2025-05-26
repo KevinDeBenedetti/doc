@@ -5,7 +5,7 @@
     "axios": "^1.9.0",
     "vitepress": "^1.6.3",
     "winston": "^3.17.0",
-    "yaml": "^2.7.1"
+    "yaml": "^2.8.0"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",
@@ -14,11 +14,11 @@
     "translate": "node scripts/translate/index.js"
   },
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.6",
-    "marked": "^15.0.11",
+    "@tailwindcss/postcss": "^4.1.7",
+    "marked": "^15.0.12",
     "ollama": "^0.5.15",
     "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.6"
+    "tailwindcss": "^4.1.7"
   },
   "pnpm": {
     "overrides": {
