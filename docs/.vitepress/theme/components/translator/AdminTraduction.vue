@@ -61,4 +61,9 @@ function handleFiles(event) {
       <pre class="whitespace-pre-wrap text-sm text-gray-800">{{ file.content }}</pre>
     </div>
   </div>
+  <div v-else class="p-4 text-gray-500 text-center">
+    <div class="flex items-center justify-center">
+      <LoaderInvader />
+    </div>
+  </div>
 </template>

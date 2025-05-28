@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import ollama from 'ollama/browser'
 import { marked } from 'marked'
 
+const isDev = import.meta.env.DEV
 const prompt = ref('')
 const response = ref('')
 const loading = ref(false)
@@ -33,7 +34,7 @@ async function askOllama() {
 </script>
 
 <template>
-  <div class="max-w-xl mx-auto p-6 border border-gray-200 dark:border-gray-700 rounded-xl transition-colors">
+  <div v-if="isDev" class="max-w-xl mx-auto p-6 border border-gray-200 dark:border-gray-700 rounded-xl transition-colors">
     <input
       v-model="prompt"
       @keyup.enter="askOllama"
@@ -55,5 +56,10 @@ async function askOllama() {
       v-html="rendered"
       class="mt-6 prose prose-indigo dark:prose-invert border-t border-gray-200 dark:border-gray-700 pt-4 transition-colors"
     />
+  </div>
+  <div v-else class="p-4 text-gray-500 text-center">
+    <div class="flex items-center justify-center">
+      <LoaderInvader />
+    </div>
   </div>
 </template>
