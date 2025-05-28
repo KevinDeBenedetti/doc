@@ -6,10 +6,6 @@ translatedDate: 15/05/2025
 verified: true
 ---
 
-<script setup lang="ts">
-import OllamaBrowser from '../.vitepress/theme/components/OllamaBrowser.vue'
-</script>
-
 # The Ollama Guide
 ::: tip
 [Documentation officielle](https://github.com/ollama/ollama)
@@ -37,5 +33,3 @@ ollama ps
 ollama run gemma3:1b
 ```
 :::
-
-<OllamaBrowser />
