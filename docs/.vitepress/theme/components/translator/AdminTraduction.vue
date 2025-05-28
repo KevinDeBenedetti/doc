@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import LoaderInvader from '../LoaderInvader.vue'
 
 const isDev = import.meta.env.DEV
 const translatedFiles = ref([])
