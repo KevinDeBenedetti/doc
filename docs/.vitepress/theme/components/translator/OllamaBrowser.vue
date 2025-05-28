@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import ollama from 'ollama/browser'
 import { marked } from 'marked'
+import LoaderInvader from '../LoaderInvader.vue'
 
 const isDev = import.meta.env.DEV
 const prompt = ref('')
