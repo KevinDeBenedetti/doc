@@ -3,10 +3,6 @@ title: Ollama
 description: Guide for setting up your Ollama.
 ---
 
-<script setup lang="ts">
-import OllamaBrowser from '../.vitepress/theme/components/OllamaBrowser.vue'
-</script>
-
 # The Ollama Guide
 ::: tip
 [Official documentation](https://github.com/ollama/ollama)
@@ -34,5 +30,3 @@ ollama ps
 ollama run gemma3:1b
 ```
 :::
-
-<OllamaBrowser />

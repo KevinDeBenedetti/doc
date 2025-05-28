@@ -10,6 +10,7 @@ hero:
   #   src: /avatar.png
   #   alt: "Kevin's avatar"
   actions:
+    # Environment & Tools
     - theme: main
       text: Docker
       link: /docker
@@ -22,11 +23,16 @@ hero:
     - theme: main
       text: Hosting
       link: /hosting
+    # Frameworks
+    - theme: main
+      text: Nuxt
+      link: /nuxt
+    # AI
+    - theme: main
+      text: Ollama
+      link: /ollama
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: Admin traductions
+    details: Tools to translate markdowns
+    link: /admin-traductions
 ---
