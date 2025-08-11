@@ -37,7 +37,7 @@ build: ## Build Docker containers
 	docker compose build --no-cache
 
 upgrade: ## Upgrade Nuxt
-	@echo "Upgrade nuxt..."
+	@echo "Upgrade vitepress..."
 	cd apps/client && pnpm upgrade
 
 # TODO
