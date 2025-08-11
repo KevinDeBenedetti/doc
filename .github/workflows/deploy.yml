@@ -11,7 +11,11 @@ permissions:
   pages: write
   id-token: write
 
-concurrency: 
+defaults:
+  run:
+    working-directory: apps/client
+
+concurrency:
   group: pages
   cancel-in-progress: false
 
@@ -34,6 +38,7 @@ jobs:
           node-version: 22
           check-latest: true
           cache: pnpm
+          cache-dependency-path: apps/client/pnpm-lock.yaml
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v4

@@ -10,7 +10,7 @@ WORKDIR /app
 
 RUN corepack enable pnpm && corepack install -g pnpm@${PNPM_VERSION}
 
-COPY package.json ./
+COPY package.json pnpm-lock.yaml ./
 # COPY --chown=node:root . ./
 
 FROM base AS dev
