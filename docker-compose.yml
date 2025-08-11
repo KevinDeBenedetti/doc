@@ -1,6 +1,7 @@
 services:
   vitepress:
     container_name: vitepress
+    platform: linux/amd64
     restart: always
     # working_dir: /app
     build:
@@ -15,3 +16,17 @@ services:
     ports:
     - 3001:5173
     # attach: true
+
+  api:
+    container_name: translator
+    platform: linux/amd64
+    env_file:
+      - .env
+    build:
+      context: apps/server
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./apps/server/app:/app/app
+    restart: always

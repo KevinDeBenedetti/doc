@@ -1,64 +1,51 @@
-# Developer Documentation made with `VitePress`
+## Developer Docs and Translation API
 
-Welcome to my developer documentation, crafted with [`VitePress`](https://vitepress.dev/) to provide a seamless and engaging experience.
+Monorepo for two parts:
+- VitePress site for developer documentation (apps/client)
+- FastAPI service for translating Markdown using LLMs (apps/server)
 
-## 🎨 Custom Theming
+LLM backends:
+- Ollama (local, default)
+- OpenAI (optional/planned; adapter can be added later)
 
-I've implemented a bespoke theme. This customization enhances readability and provides a unique visual experience.
+### Quick start (Docker)
+- Requirements: Docker and Docker Compose
+- Start both services:
+    - docs: http://localhost:3001
+    - api: http://localhost:8000
 
-## 🌐 Multilingual Support
-
-The documentation is available in multiple languages.
-
-### Translate content
-
-Translations are executed on a local computer using Ollama, [official repository](https://github.com/ollama/ollama).
-
-```sh
-./scripts
-└── translate
-    ├── apiClient.js
-    ├── fileProcessor.js
-    ├── index.js
-    ├── languageSettings.js
-    ├── logger.js
-    ├── translate.cjs
-    └── translator.js
-```
-
-> Run translation on local
-```sh
-pnpm translate
-```
-
-> Validate a file
-```html
----
-...
-verified: default false, update to true after review
----
-```
-Add this comment on the top of the markdown file.
-
-## ⚙️ Projet
-
-### Start
 ```bash
+docker compose up -d
+```
+
+Optional: create a .env at repo root for service config.
+
+### VitePress docs (local dev)
+```bash
+cd apps/client
+pnpm install
 pnpm run docs:dev
 ```
 
-## 🚧 In progress
+### Translation API (FastAPI)
+- Base URL: http://localhost:8000
+- Health and models (Ollama):
+    - GET /health/
+    - GET /health/api/version
+    - GET /health/models
+- Translate Markdown:
+    - POST /translate/upload
+    - multipart/form-data fields:
+        - file: .md file
+        - target_lang: e.g. fr
+        - model: e.g. gemma3:latest
+    - Response: translated markdown (text/plain)
 
-### Python / Typer
-
-```sh
-# Go to directy
-cd scripts/translate-py/
-
-# Virtual env
-python3 -m venv .venv
-source .venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
+Run locally without Docker:
+```bash
+cd apps/server
+# option A (uvicorn)
+uvicorn app.main:app --reload --port 8000
+# option B (FastAPI CLI if installed)
+fastapi dev app/main.py --port 8000
 ```

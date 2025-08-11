@@ -15,14 +15,14 @@ stop: ## Stop the development environment
 
 clean: stop ## Clean build files and dependencies
 	rm -rf apps/client/.vitepress apps/client/node_modules
+	rm -rf api/server/.ruff_cache api/server/.venv api/server/uv.lock
 
-# TODO
-# setup-server: clean ## Start the development server
-# 	@echo "Setup api..."
-# 		cd apps/server && \
-# 		uv venv --clear && \
-# 		source .venv/bin/activate && \
-# 		uv sync
+setup-server: clean ## Start the development server
+	@echo "Setup api..."
+		cd apps/server && \
+		uv venv --clear && \
+		source .venv/bin/activate && \
+		uv sync
 
 setup-client: ## Install dependencies for the apps
 	@echo "Setup frontend..."
