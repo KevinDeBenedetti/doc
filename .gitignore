@@ -11,3 +11,4 @@ logs/translation.log
 
 *.venv
 *__pycache__
+
