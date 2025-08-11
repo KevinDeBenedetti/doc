@@ -2,16 +2,16 @@ services:
   vitepress:
     container_name: vitepress
     restart: always
-    working_dir: /app
+    # working_dir: /app
     build:
-      context: .
+      context:  apps/client
       dockerfile: Dockerfile
       target: dev
     volumes:
-      - .:/app
+      - ./apps/client:/app
       - /app/node_modules
     env_file:
     - .env
     ports:
     - 3001:5173
-    attach: true
+    # attach: true
