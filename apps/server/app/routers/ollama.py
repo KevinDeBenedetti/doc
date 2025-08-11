@@ -18,10 +18,9 @@ def health_check():
     
 @router.get("/api/version")
 def ollama_version():
-    if get_ollama_version():
     version = get_ollama_version()
     if version:
-        return version
+        return {"version": version}
     else:
         raise HTTPException(status_code=503, detail="Ollama API version unreachable")
     
