@@ -4,7 +4,6 @@ from typing import Tuple, List, Dict
 import httpx
 import yaml
 # FIXME : verify if marked is necessary
-# from marked import lexer as marked_lexer
 from .ollama import check_ollama_health, translate_text
 # Import OLLAMA_URL, MODEL, DEFAULT_lANG, language_settings
 
