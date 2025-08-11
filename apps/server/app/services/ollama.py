@@ -42,7 +42,7 @@ def list_ollama_models():
     try:
         return ollama.list()["models"]
     except Exception as e:
-        raise ConnectionError(f"Erreur en récupérant les modèles Ollama: {e}")
+        raise ConnectionError(f"Error retrieving Ollama models: {e}")
     
 def translate_text(
         text: str,
