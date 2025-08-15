@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException
 from fastapi.responses import JSONResponse, PlainTextResponse
-from app.services.ollama import translate_text, list_ollama_models
+from src.services.ollama import translate_text, list_ollama_models
 from enum import Enum
 from typing import Type
 

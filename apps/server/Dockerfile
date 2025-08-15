@@ -8,8 +8,8 @@ COPY pyproject.toml /app/pyproject.toml
 COPY uv.lock /app/uv.lock
 RUN uv sync --no-cache
 
-COPY app /app/app
+COPY src /app/src
 
 ENV PYTHONPATH=/app
 
-CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--reload"]
+CMD ["uv", "run", "uvicorn", "src.main:app", "--host", "0.0.0.0", "--reload"]
