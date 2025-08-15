@@ -22,7 +22,8 @@ setup-server: clean ## Start the development server
 		cd apps/server && \
 		uv venv --clear && \
 		source .venv/bin/activate && \
-		uv sync 
+		uv sync --no-cache && \
+		uv cache clean
 
 setup-client: setup-server ## Install dependencies for the apps
 	@echo "Setup frontend..."
