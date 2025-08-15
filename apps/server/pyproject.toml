@@ -1,14 +1,23 @@
 [project]
 name = "doc-translator"
 version = "0.1.0"
-description = "Add your description here"
+description = "A translator ai project for documentation"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "fastapi[standard]>=0.115.12",
+    "fastapi[standard]>=0.116.1",
     "httpx>=0.28.1",
     "marked>=0.9.1",
-    "ollama>=0.4.8",
+    "ollama>=0.5.3",
+    "openai>=1.99.9",
     "pydantic-settings>=2.10.1",
-    "requests>=2.32.3",
+    "requests>=2.32.4",
+]
+
+[tool.uv.pip]
+upgrade = true
+
+[dependency-groups]
+dev = [
+    "tomli-w>=1.2.0",
 ]

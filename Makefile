@@ -22,9 +22,9 @@ setup-server: clean ## Start the development server
 		cd apps/server && \
 		uv venv --clear && \
 		source .venv/bin/activate && \
-		uv sync
+		uv sync 
 
-setup-client: ## Install dependencies for the apps
+setup-client: setup-server ## Install dependencies for the apps
 	@echo "Setup frontend..."
 	cd apps/client && pnpm install
 
@@ -37,8 +37,10 @@ build: ## Build Docker containers
 	docker compose build --no-cache
 
 upgrade: ## Upgrade Nuxt
-	@echo "Upgrade vitepress..."
+	@echo "Upgrade client..."
 	cd apps/client && pnpm upgrade
+	@echo "Upgrade server..."
+	cd apps/server && uv run python upgrade_pyproject.py
 
 # TODO
 # lint: ## Lint Nuxt code

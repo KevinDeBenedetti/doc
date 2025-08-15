@@ -48,7 +48,7 @@ import os
 from typing import Optional
 import json
 from datetime import datetime
-from app.shared.config import get_app_settings
+from src.shared.config import get_app_settings
 
 class JSONFormatter(logging.Formatter):
     """Formatter personnalisé pour les logs JSON"""

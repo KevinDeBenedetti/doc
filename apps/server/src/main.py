@@ -1,14 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
-from app.shared.config import get_app_settings
-from app.shared.logger import get_logger
+from src.shared.config import get_app_settings
+from src.shared.logger import get_logger
 
 # routes
-# from app.shared.api import base
-from app.routers import ollama, translate
+from src.shared.api import base
+from src.routers import ollama, translate
 # middlewares
-from app.shared.middlewares.logging import LoggingMiddleware
+from src.shared.middlewares.logging import LoggingMiddleware
 
 logger = get_logger(__name__)
 settings = get_app_settings()
@@ -31,6 +31,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(base)
 app.include_router(ollama.router)
 app.include_router(translate.router)
 
