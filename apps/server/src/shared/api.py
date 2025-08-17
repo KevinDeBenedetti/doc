@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException
 from src.shared.services.ai import AIService
 from fastapi.responses import JSONResponse
 from pathlib import Path
