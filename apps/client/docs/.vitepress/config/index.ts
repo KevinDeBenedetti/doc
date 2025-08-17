@@ -5,7 +5,7 @@ import { fr } from './fr'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Runes Doc",
-  description: "My doc with vitepress",
+  description: "My developer documentation.",
 
   base: '/doc/',
 
@@ -39,8 +39,5 @@ export default defineConfig({
       host: '0.0.0.0',
       port: 5173
     },
-    optimizeDeps: { include: ['ollama/browser'] },
-    ssr: { noExternal: ['ollama/browser'] },
   },
-
 })
