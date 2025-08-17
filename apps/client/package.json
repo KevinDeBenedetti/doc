@@ -2,23 +2,20 @@
   "author": "Kevin De Benedetti",
   "type": "module",
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.12",
     "axios": "^1.11.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.12",
     "vitepress": "^1.6.4",
-    "winston": "^3.17.0",
     "yaml": "^2.8.1"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "translate": "node scripts/translate/index.js"
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.11",
-    "marked": "^15.0.12",
-    "ollama": "^0.5.17",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.11"
+    "marked": "^15.0.12"
   },
   "pnpm": {
     "overrides": {

@@ -14,7 +14,7 @@ stop: ## Stop the development environment
 	docker compose down
 
 clean: stop ## Clean build files and dependencies
-	rm -rf apps/client/.vitepress apps/client/node_modules
+	rm -rf apps/client/docs/.vitepress/cache apps/client/docs/.vitepress/dist apps/client/node_modules
 	rm -rf apps/server/.ruff_cache apps/server/.venv
 
 setup-server: clean ## Start the development server
