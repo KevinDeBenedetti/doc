@@ -1,6 +1,8 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 from src.shared.services.ai import AIService
 from fastapi.responses import JSONResponse
+from pathlib import Path
+from typing import Optional
 
 base = APIRouter()
 
