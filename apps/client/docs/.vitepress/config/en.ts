@@ -4,7 +4,8 @@ export const en = defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Examples', link: '/markdown-examples' },
+      { text: 'Translator', link: '/admin-traductions' },
     ],
 
     sidebar: [

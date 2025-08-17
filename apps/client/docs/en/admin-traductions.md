@@ -1,8 +1,8 @@
 ---
-title: Admin Traductions
+title: Translator
 ---
 
-# Admin Traductions
+# Translator
 
 <script setup lang="ts">
 import OllamaBrowser from '../.vitepress/theme/components/translator/OllamaBrowser.vue'
