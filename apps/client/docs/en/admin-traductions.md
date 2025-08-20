@@ -11,7 +11,7 @@ import AdminTraduction from '../.vitepress/theme/components/translator/AdminTrad
 import ListMarkdownFiles from '../.vitepress/theme/components/translator/ListMarkdownFiles.vue'
 </script>
 
-## Files
+## Content
 
 <ListFiles />
 

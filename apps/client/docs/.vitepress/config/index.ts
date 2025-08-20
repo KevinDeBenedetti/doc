@@ -5,6 +5,7 @@ import { fr } from './fr'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Runes Doc",
+
   description: "My developer documentation.",
 
   base: '/doc/',
