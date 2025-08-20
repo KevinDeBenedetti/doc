@@ -4,13 +4,17 @@ import LoaderInvader from '../LoaderInvader.vue'
 
 const isDev = import.meta.env.DEV
 const selectedFile = ref(null)
-const translatedContent = ref('')
 
-// Charge tout le contenu markdown (dev uniquement)
+// States for the API
+const isApiSending = ref(false)
+const apiResponse = ref(null)
+const apiError = ref(null)
+
+// Upload markdown content (dev only)
 const files = isDev ? import.meta.glob('/**/*.md', { as: 'raw', eager: true }) : {}
 const allFilenames = Object.keys(files)
 
-// Détection des fichiers en anglais
+// Detection of English files
 const englishFiles = computed(() => {
   return allFilenames.filter(filename => {
     const hasEnInPath = /\/en\//.test(filename)
@@ -21,46 +25,55 @@ const englishFiles = computed(() => {
   })
 })
 
-// Statistiques
-const stats = computed(() => ({
-  total: allFilenames.length,
-  english: englishFiles.value.length,
-  other: allFilenames.length - englishFiles.value.length
-}))
-
 function handleSelect(path) {
   selectedFile.value = path
-  translatedContent.value = ''
+  // Init states when a new file is selected
+  apiResponse.value = null
+  apiError.value = null
 }
 
-async function translateFile() {
+// Function to send the file to the API
+async function sendToApi() {
   if (!selectedFile.value) return
+  
+  isApiSending.value = true
+  apiResponse.value = null
+  apiError.value = null
+  
+  try {
+    // Get the markdown file content
+    const fileContent = files[selectedFile.value]
 
-  const content = files[selectedFile.value]
-  const response = await fetch('http://localhost:3000/traduire', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      content,
-      filename: selectedFile.value.split('/').pop()
-    }),
-  })
-
-  const data = await response.json()
-  translatedContent.value = data.translatedContent
+    console.log('Sending file:', fileContent)
+    
+    // Send to the API
+    const response = await fetch('/api/markdown', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        filePath: selectedFile.value,
+        content: fileContent
+      })
+    })
+    
+    if (!response.ok) {
+      throw new Error(`API responded with status: ${response.status}`)
+    }
+    
+    const data = await response.json()
+    apiResponse.value = data
+  } catch (error) {
+    console.error('Error sending file to API:', error)
+    apiError.value = error.message || 'Failed to send file to API'
+  } finally {
+    isApiSending.value = false
+  }
 }
 
-// Helpers pour l'affichage "tree"
-function normalizeForDisplay(filepath) {
-  // Chemin lisible: retire leading slash, retire segment en/ s'il existe, simplifie .en.md -> .md
-  return filepath
-    .replace(/^\/+/, '')
-    .replace(/(^|\/)en\//, '$1')
-    .replace(/\.en\.md$/, '.md')
-}
-
+// Building the tree structure
 function buildTree(paths) {
-  // Construit un arbre { type: 'dir'|'file', name, children?, fullPath? }
   const root = []
   const byKey = new Map()
 
@@ -76,13 +89,20 @@ function buildTree(paths) {
   }
 
   for (const full of paths) {
-    const display = normalizeForDisplay(full)
+    // Directly integrated normalization
+    const display = full
+      .replace(/^\/+/, '')
+      .replace(/(^|\/)en\//, '$1')
+      .replace(/\.en\.md$/, '.md')
+      
     const parts = display.split('/').filter(Boolean)
     let current = root
     let parentKey = ''
+    
     for (let i = 0; i < parts.length; i++) {
       const part = parts[i]
       const last = i === parts.length - 1
+      
       if (last) {
         current.push({
           type: 'file',
@@ -98,7 +118,7 @@ function buildTree(paths) {
     }
   }
 
-  // Tri: dossiers en premier puis fichiers, alpha
+  // Sort: directories first then files, alphabetically
   function sortNodes(arr) {
     arr.sort((a, b) => {
       if (a.type !== b.type) return a.type === 'dir' ? -1 : 1
@@ -123,10 +143,8 @@ function buildTreeLines(nodes, prefixStack = []) {
     const branch = isLast ? '└── ' : '├── '
     const prefix = prefixStack.map(last => (last ? '    ' : '│   ')).join('')
 
-    const lineText = `${prefix}${branch}${node.name}`
-
     lines.push({
-      text: lineText,
+      text: `${prefix}${branch}${node.name}`,
       isDir: node.type === 'dir',
       isFile: node.type === 'file',
       fullPath: node.fullPath || null
@@ -146,22 +164,6 @@ const treeLines = computed(() => buildTreeLines(englishTree.value))
 
 <template>
   <div v-if="isDev" class="p-4 max-w-3xl m-auto">
-    <!-- Statistiques -->
-    <div class="mb-4 p-3 bg-blue-50 rounded-lg text-sm">
-      <div class="font-semibold text-blue-800 mb-1">Files Statistics:</div>
-      <div class="text-blue-600">
-        📊 Total: {{ stats.total }} | 
-        🇬🇧 English: {{ stats.english }} | 
-        🌍 Other: {{ stats.other }}
-      </div>
-    </div>
-
-    <legend class="text-xl font-semibold mb-3">
-      Choose an English page to translate 
-      <span class="text-sm text-gray-500">({{ englishFiles.length }} files)</span>
-    </legend>
-
-    <!-- Message si aucun fichier anglais -->
     <div v-if="englishFiles.length === 0" class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-center">
       <div class="text-yellow-800 font-medium">⚠️ No English files found</div>
       <div class="text-yellow-600 text-sm mt-1">
@@ -169,10 +171,11 @@ const treeLines = computed(() => buildTreeLines(englishTree.value))
       </div>
     </div>
 
-    <!-- Arborescence style "tree" -->
+    <!-- Tree-style file structure -->
     <div v-else class="mb-4 rounded-lg border border-gray-200">
       <div class="px-3 py-2 border-b text-sm text-gray-600 bg-gray-50 rounded-t-lg">
-        Tree view (Markdown style)
+        Choose a page to translate 
+        <span class="text-sm text-gray-500">({{ englishFiles.length }} files)</span>
       </div>
       <div class="p-3 font-mono text-sm whitespace-pre overflow-x-auto">
         <div
@@ -180,7 +183,9 @@ const treeLines = computed(() => buildTreeLines(englishTree.value))
           :key="i"
           class="flex items-center gap-2 rounded px-1"
           :class="[
-            line.isFile && selectedFile === line.fullPath ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200' : 'hover:bg-gray-50 dark:hover:bg-gray-700'
+            line.isFile && selectedFile === line.fullPath 
+              ? 'bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200 dark:bg-emerald-900 dark:text-emerald-300 dark:ring-emerald-700' 
+              : 'hover:bg-slate-200 dark:hover:bg-slate-700'
           ]"
         >
           <div class="w-5 text-blue-500 select-none">
@@ -199,35 +204,38 @@ const treeLines = computed(() => buildTreeLines(englishTree.value))
       </div>
     </div>
 
-    <!-- Fichier sélectionné -->
+    <!-- Selected file -->
     <div v-if="selectedFile" class="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
       <div class="text-green-800 font-medium text-sm">✅ Selected file:</div>
       <div class="text-green-700 text-sm mt-1 font-mono break-all">
         {{ selectedFile.replace(/^\/+/, '') }}
       </div>
+      
+      <!-- Button to send to the API -->
+      <div class="mt-4 flex gap-2">
+        <button 
+          @click="sendToApi" 
+          :disabled="isApiSending"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+        >
+          <span v-if="isApiSending" class="inline-block animate-spin">⟳</span>
+          {{ isApiSending ? 'Envoi en cours...' : 'Envoyer vers l\'API' }}
+        </button>
+      </div>
     </div>
-
-    <!-- Bouton de traduction -->
-    <div class="w-full min-h-20 mt-6 flex items-center justify-center">
-      <button
-        @click="translateFile"
-        :disabled="!selectedFile"
-        class="text-xl w-40 h-12 rounded bg-emerald-500 text-white relative overflow-hidden group z-10 hover:text-white duration-1000 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed"
-      >
-        <span
-          class="absolute bg-emerald-600 w-36 h-36 rounded-full group-hover:scale-100 scale-0 -z-10 -left-2 -top-10 group-hover:duration-500 duration-700 origin-center transform transition-all"
-        ></span>
-        <span
-          class="absolute bg-emerald-800 w-36 h-36 -left-2 -top-10 rounded-full group-hover:scale-100 scale-0 -z-10 group-hover:duration-700 duration-500 origin-center transform transition-all"
-        ></span>
-        Translate
-      </button>
+    
+    <!-- API result -->
+    <div v-if="apiResponse" class="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+      <div class="text-green-800 font-medium text-sm">✅ Fichier envoyé avec succès</div>
+      <div class="text-green-700 text-sm mt-1 font-mono break-all">
+        {{ typeof apiResponse === 'object' ? JSON.stringify(apiResponse) : apiResponse }}
+      </div>
     </div>
-
-    <!-- Contenu traduit -->
-    <div v-if="translatedContent" class="mt-6">
-      <h3 class="font-bold mb-2">Contenu traduit :</h3>
-      <pre class="bg-gray-100 p-3 rounded-md whitespace-pre-wrap text-sm max-h-96 overflow-y-auto">{{ translatedContent }}</pre>
+    
+    <!-- API error -->
+    <div v-if="apiError" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
+      <div class="text-red-800 font-medium text-sm">❌ Erreur lors de l'envoi</div>
+      <div class="text-red-700 text-sm mt-1">{{ apiError }}</div>
     </div>
   </div>
 
@@ -236,4 +244,5 @@ const treeLines = computed(() => buildTreeLines(englishTree.value))
       <LoaderInvader />
     </div>
   </div>
+
 </template>
