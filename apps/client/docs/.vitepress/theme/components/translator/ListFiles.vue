@@ -219,7 +219,7 @@ const treeLines = computed(() => buildTreeLines(englishTree.value))
           class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
         >
           <span v-if="isApiSending" class="inline-block animate-spin">⟳</span>
-          {{ isApiSending ? 'Envoi en cours...' : 'Envoyer vers l\'API' }}
+          {{ isApiSending ? 'Sending...' : 'Send to API' }}
         </button>
       </div>
     </div>
