@@ -234,7 +234,7 @@ const treeLines = computed(() => buildTreeLines(englishTree.value))
     
     <!-- API error -->
     <div v-if="apiError" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-      <div class="text-red-800 font-medium text-sm">❌ Erreur lors de l'envoi</div>
+      <div class="text-red-800 font-medium text-sm">❌ Error while sending</div>
       <div class="text-red-700 text-sm mt-1">{{ apiError }}</div>
     </div>
   </div>
