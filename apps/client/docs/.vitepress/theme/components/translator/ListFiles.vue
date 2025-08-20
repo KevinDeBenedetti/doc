@@ -226,7 +226,7 @@ const treeLines = computed(() => buildTreeLines(englishTree.value))
     
     <!-- API result -->
     <div v-if="apiResponse" class="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
-      <div class="text-green-800 font-medium text-sm">✅ Fichier envoyé avec succès</div>
+      <div class="text-green-800 font-medium text-sm">✅ File sent successfully</div>
       <div class="text-green-700 text-sm mt-1 font-mono break-all">
         {{ typeof apiResponse === 'object' ? JSON.stringify(apiResponse) : apiResponse }}
       </div>
