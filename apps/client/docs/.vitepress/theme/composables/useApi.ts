@@ -7,7 +7,7 @@ export function useApi() {
   const apiError = ref(null)
 
   // Function to send the file to the API
-  async function sendToApi(selectedFile, files) {
+  async function sendToApi(selectedFile: string | null, files: Record<string, string>) {
     if (!selectedFile) return
     
     isApiSending.value = true
