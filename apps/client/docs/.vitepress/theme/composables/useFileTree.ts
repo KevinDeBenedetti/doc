@@ -1,6 +1,8 @@
 import { computed } from 'vue'
 
-export function useFileTree(englishFiles) {
+import { computed, Ref } from 'vue'
+
+export function useFileTree(englishFiles: Ref<string[]>) {
   // Building the tree structure
   function buildTree(paths) {
     const root = []
