@@ -1,165 +1,24 @@
 <script setup>
-import { ref, computed } from 'vue'
 import LoaderInvader from '../LoaderInvader.vue'
+import { useFileManager } from '../../composables/useFileManager.ts'
+import { useApi } from '../../composables/useApi.ts'
+import { useFileTree } from '../../composables/useFileTree.ts'
 
-const isDev = import.meta.env.DEV
-const selectedFile = ref(null)
+// Use composables
+const { isDev, selectedFile, files, englishFiles, handleSelect } = useFileManager()
+const { isApiSending, apiResponse, apiError, sendToApi, resetApiStates } = useApi()
+const { treeLines } = useFileTree(englishFiles)
 
-// States for the API
-const isApiSending = ref(false)
-const apiResponse = ref(null)
-const apiError = ref(null)
-
-// Upload markdown content (dev only)
-const files = isDev ? import.meta.glob('/**/*.md', { as: 'raw', eager: true }) : {}
-const allFilenames = Object.keys(files)
-
-// Detection of English files
-const englishFiles = computed(() => {
-  return allFilenames.filter(filename => {
-    const hasEnInPath = /\/en\//.test(filename)
-    const hasEnExtension = filename.endsWith('.en.md')
-    const pathParts = filename.split('/')
-    const hasEnFolder = pathParts.some(part => part === 'en')
-    return hasEnInPath || hasEnExtension || hasEnFolder
-  })
-})
-
-function handleSelect(path) {
-  selectedFile.value = path
-  // Init states when a new file is selected
-  apiResponse.value = null
-  apiError.value = null
+// Combined function for file selection
+function handleFileSelect(path) {
+  handleSelect(path)
+  resetApiStates()
 }
 
-// Function to send the file to the API
-async function sendToApi() {
-  if (!selectedFile.value) return
-  
-  isApiSending.value = true
-  apiResponse.value = null
-  apiError.value = null
-  
-  try {
-    // Get the markdown file content
-    const fileContent = files[selectedFile.value]
-
-    console.log('Sending file:', fileContent)
-    
-    // Send to the API
-    const response = await fetch('/api/markdown', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        filePath: selectedFile.value,
-        content: fileContent
-      })
-    })
-    
-    if (!response.ok) {
-      throw new Error(`API responded with status: ${response.status}`)
-    }
-    
-    const data = await response.json()
-    apiResponse.value = data
-  } catch (error) {
-    console.error('Error sending file to API:', error)
-    apiError.value = error.message || 'Failed to send file to API'
-  } finally {
-    isApiSending.value = false
-  }
+// Function to send to API
+function handleSendToApi() {
+  sendToApi(selectedFile.value, files)
 }
-
-// Building the tree structure
-function buildTree(paths) {
-  const root = []
-  const byKey = new Map()
-
-  function ensureDir(parentArr, parentKey, name) {
-    const key = parentKey ? `${parentKey}/${name}` : name
-    let node = byKey.get(key)
-    if (!node) {
-      node = { type: 'dir', name, children: [], key }
-      byKey.set(key, node)
-      parentArr.push(node)
-    }
-    return node
-  }
-
-  for (const full of paths) {
-    // Directly integrated normalization
-    const display = full
-      .replace(/^\/+/, '')
-      .replace(/(^|\/)en\//, '$1')
-      .replace(/\.en\.md$/, '.md')
-      
-    const parts = display.split('/').filter(Boolean)
-    let current = root
-    let parentKey = ''
-    
-    for (let i = 0; i < parts.length; i++) {
-      const part = parts[i]
-      const last = i === parts.length - 1
-      
-      if (last) {
-        current.push({
-          type: 'file',
-          name: part,
-          fullPath: full,
-          key: full
-        })
-      } else {
-        const dirNode = ensureDir(current, parentKey, part)
-        current = dirNode.children
-        parentKey = dirNode.key
-      }
-    }
-  }
-
-  // Sort: directories first then files, alphabetically
-  function sortNodes(arr) {
-    arr.sort((a, b) => {
-      if (a.type !== b.type) return a.type === 'dir' ? -1 : 1
-      return a.name.localeCompare(b.name)
-    })
-    for (const n of arr) {
-      if (n.type === 'dir') sortNodes(n.children)
-    }
-  }
-  sortNodes(root)
-
-  return root
-}
-
-const englishTree = computed(() => buildTree(englishFiles.value))
-
-function buildTreeLines(nodes, prefixStack = []) {
-  const lines = []
-
-  nodes.forEach((node, idx) => {
-    const isLast = idx === nodes.length - 1
-    const branch = isLast ? '└── ' : '├── '
-    const prefix = prefixStack.map(last => (last ? '    ' : '│   ')).join('')
-
-    lines.push({
-      text: `${prefix}${branch}${node.name}`,
-      isDir: node.type === 'dir',
-      isFile: node.type === 'file',
-      fullPath: node.fullPath || null
-    })
-
-    if (node.type === 'dir' && node.children?.length) {
-      const childLines = buildTreeLines(node.children, [...prefixStack, isLast])
-      lines.push(...childLines)
-    }
-  })
-
-  return lines
-}
-
-const treeLines = computed(() => buildTreeLines(englishTree.value))
 </script>
 
 <template>
@@ -196,7 +55,7 @@ const treeLines = computed(() => buildTreeLines(englishTree.value))
             class="text-left flex-1 cursor-pointer"
             :class="line.isFile ? 'text-blue-600 hover:underline' : 'text-gray-700'"
             :disabled="!line.isFile"
-            @click="line.isFile && handleSelect(line.fullPath)"
+            @click="line.isFile && handleFileSelect(line.fullPath)"
           >
             {{ line.text }}
           </button>
@@ -214,7 +73,7 @@ const treeLines = computed(() => buildTreeLines(englishTree.value))
       <!-- Button to send to the API -->
       <div class="mt-4 flex gap-2">
         <button 
-          @click="sendToApi" 
+          @click="handleSendToApi" 
           :disabled="isApiSending"
           class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
         >
@@ -244,5 +103,4 @@ const treeLines = computed(() => buildTreeLines(englishTree.value))
       <LoaderInvader />
     </div>
   </div>
-
 </template>
