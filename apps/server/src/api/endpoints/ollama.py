@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from ..services.ollama import check_ollama_health, get_ollama_version
+from src.services.ollama import check_ollama_health, get_ollama_version
 import ollama
 
 router = APIRouter(

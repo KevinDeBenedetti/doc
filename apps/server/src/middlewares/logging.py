@@ -6,8 +6,8 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import StreamingResponse
 import json
 from datetime import datetime
-from src.shared.logger import get_logger
-from src.shared.config import get_app_settings
+from src.core.logger import get_logger
+from src.core.config import get_app_settings
 
 logger = get_logger(__name__)
 
