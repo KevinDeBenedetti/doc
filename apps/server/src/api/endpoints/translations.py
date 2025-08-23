@@ -7,6 +7,9 @@ from typing import Optional, List
 import os
 from dotenv import load_dotenv
 
+# Add import for settings
+from src.core.config import get_ai_settings
+
 # Load environment variables
 load_dotenv()
 
@@ -26,6 +29,10 @@ class TranslationResponse(BaseModel):
     model_used: str
 
 # LangChain configuration
+def get_translation_chain(model_name="gpt-oss"):
+    llm = ChatOpenAI(
+        temperature=0.4,
+        model_name=model_name,
         openai_api_key=get_ai_settings().openai_api_key
     )
     

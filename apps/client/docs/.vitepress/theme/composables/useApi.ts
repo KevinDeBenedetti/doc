@@ -7,7 +7,13 @@ export function useApi() {
   const apiError = ref(null)
 
   // Function to send the file to the API
-  async function sendToApi(selectedFile: string | null, files: Record<string, string>) {
+  async function sendToApi(
+    selectedFile: string | null, 
+    files: Record<string, string>,
+    sourceLanguage: string = 'en',
+    targetLanguage: string = 'fr',
+    modelName: string = 'gpt-oss'
+  ) {
     if (!selectedFile) return
     
     isApiSending.value = true
@@ -18,18 +24,30 @@ export function useApi() {
       // Get the markdown file content
       const fileContent = files[selectedFile]
 
-      console.log('Sending file:', fileContent)
+      console.log('Sending file for translation:', {
+        file: selectedFile,
+        sourceLanguage,
+        targetLanguage,
+        modelName
+      })
+      
+      // Create FormData to match the API expectations
+      const formData = new FormData()
+      
+      // Create a file blob from the content
+      const fileBlob = new Blob([fileContent], { type: 'text/markdown' })
+      const fileName = selectedFile.split('/').pop() || 'document.md'
+      formData.append('file', fileBlob, fileName)
+      
+      // Add other required parameters
+      formData.append('source_language', sourceLanguage)
+      formData.append('target_language', targetLanguage)
+      formData.append('model_name', modelName)
       
       // Send to the API
-      const response = await fetch('/api/markdown', {
+      const response = await fetch('http://localhost:8000/translate-file', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          filePath: selectedFile,
-          content: fileContent
-        })
+        body: formData
       })
       
       if (!response.ok) {
