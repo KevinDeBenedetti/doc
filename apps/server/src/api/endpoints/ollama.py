@@ -3,8 +3,8 @@ from src.services.ollama import check_ollama_health, get_ollama_version
 import ollama
 
 router = APIRouter(
-    prefix="/health",
-    tags=["health"],
+    prefix="/ollama",
+    tags=["ollama"],
 )
 
 OLLAMA_BASE_URL = "http://localhost:11434"
