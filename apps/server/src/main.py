@@ -6,7 +6,7 @@ from src.core.logger import get_logger
 
 # routes
 from src.api.router import base
-from src.api.endpoints import ollama, translate
+from src.api.endpoints import ollama, translate, translations
 # middlewares
 from src.middlewares.logging import LoggingMiddleware
 
@@ -34,6 +34,7 @@ app.add_middleware(
 app.include_router(base)
 app.include_router(ollama.router)
 app.include_router(translate.router)
+app.include_router(translations.router)
 
 @app.get("/", include_in_schema=False)
 def root_redirect_to_docs():

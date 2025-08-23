@@ -7,8 +7,7 @@ from typing import Optional
 base = APIRouter()
 
 @base.get(
-    "/ai/health",
-    tags=["ai"],
+    "/health",
     summary="Check AI Service Health", 
     description="Returns the health status of the AI service to ensure it is operational."
 )
@@ -17,8 +16,7 @@ async def get_ai_health():
     return await service.healthcheck()
 
 @base.get(
-    "/ai/models", 
-    tags=["ai"], 
+    "/models", 
     summary="List Available AI Models", 
     description="Retrieves a list of all available AI models provided by the service."
 )

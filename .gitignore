@@ -12,3 +12,4 @@ logs/translation.log
 *.venv
 *__pycache__
 
+*.DS_Store
