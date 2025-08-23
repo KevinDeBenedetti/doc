@@ -3,11 +3,17 @@ import LoaderInvader from '../LoaderInvader.vue'
 import { useFileManager } from '../../composables/useFileManager.ts'
 import { useApi } from '../../composables/useApi.ts'
 import { useFileTree } from '../../composables/useFileTree.ts'
+import { ref } from 'vue'
 
 // Use composables
 const { isDev, selectedFile, files, englishFiles, handleSelect } = useFileManager()
 const { isApiSending, apiResponse, apiError, sendToApi, resetApiStates } = useApi()
 const { treeLines } = useFileTree(englishFiles)
+
+// Translation settings
+const sourceLanguage = ref('en')
+const targetLanguage = ref('fr')
+const modelName = ref('gpt-oss')
 
 // Combined function for file selection
 function handleFileSelect(path) {
@@ -17,7 +23,13 @@ function handleFileSelect(path) {
 
 // Function to send to API
 function handleSendToApi() {
-  sendToApi(selectedFile.value, files)
+  sendToApi(
+    selectedFile.value, 
+    files, 
+    sourceLanguage.value, 
+    targetLanguage.value,
+    modelName.value
+  )
 }
 </script>
 
@@ -70,6 +82,36 @@ function handleSendToApi() {
         {{ selectedFile.replace(/^\/+/, '') }}
       </div>
       
+      <!-- Translation settings -->
+      <div class="mt-3 grid grid-cols-2 md:grid-cols-3 gap-3">
+        <div>
+          <label class="block text-sm text-green-800 mb-1">Source language</label>
+          <select v-model="sourceLanguage" class="w-full px-2 py-1 border border-green-300 rounded">
+            <option value="en">English</option>
+            <option value="fr">French</option>
+            <option value="es">Spanish</option>
+            <option value="de">German</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm text-green-800 mb-1">Target language</label>
+          <select v-model="targetLanguage" class="w-full px-2 py-1 border border-green-300 rounded">
+            <option value="fr">French</option>
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="de">German</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm text-green-800 mb-1">AI Model</label>
+          <select v-model="modelName" class="w-full px-2 py-1 border border-green-300 rounded">
+            <option value="gpt-oss">GPT-OSS</option>
+            <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+            <option value="gpt-4">GPT-4</option>
+          </select>
+        </div>
+      </div>
+      
       <!-- Button to send to the API -->
       <div class="mt-4 flex gap-2">
         <button 
@@ -78,22 +120,29 @@ function handleSendToApi() {
           class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
         >
           <span v-if="isApiSending" class="inline-block animate-spin">⟳</span>
-          {{ isApiSending ? 'Sending...' : 'Send to API' }}
+          {{ isApiSending ? 'Translating...' : 'Translate' }}
         </button>
       </div>
     </div>
     
     <!-- API result -->
     <div v-if="apiResponse" class="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
-      <div class="text-green-800 font-medium text-sm">✅ File sent successfully</div>
-      <div class="text-green-700 text-sm mt-1 font-mono break-all">
-        {{ typeof apiResponse === 'object' ? JSON.stringify(apiResponse) : apiResponse }}
+      <div class="text-green-800 font-medium text-sm">✅ Translation successful</div>
+      <div class="mt-2">
+        <div class="text-green-800 font-medium text-sm">Translated content:</div>
+        <div class="mt-1 p-3 bg-white border border-green-200 rounded-lg max-h-60 overflow-y-auto">
+          <pre class="text-sm whitespace-pre-wrap">{{ apiResponse.translated_content }}</pre>
+        </div>
+      </div>
+      <div class="mt-2 text-xs text-green-700">
+        <div>From: {{ apiResponse.source_language }} → To: {{ apiResponse.target_language }}</div>
+        <div>Model used: {{ apiResponse.model_used }}</div>
       </div>
     </div>
     
     <!-- API error -->
     <div v-if="apiError" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-      <div class="text-red-800 font-medium text-sm">❌ Error while sending</div>
+      <div class="text-red-800 font-medium text-sm">❌ Error while translating</div>
       <div class="text-red-700 text-sm mt-1">{{ apiError }}</div>
     </div>
   </div>
