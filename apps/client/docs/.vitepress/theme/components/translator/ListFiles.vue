@@ -76,17 +76,17 @@ function handleSendToApi() {
     </div>
 
     <!-- Selected file -->
-    <div v-if="selectedFile" class="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
-      <div class="text-green-800 font-medium text-sm">✅ Selected file:</div>
-      <div class="text-green-700 text-sm mt-1 font-mono break-all">
+    <div v-if="selectedFile" class="mb-4 p-3 bg-gray-50 dark:bg-gray-400 border border-gray-200 dark:border-gray-600 rounded-lg">
+      <div class="text-gray-800 font-medium text-sm">✅ Selected file:</div>
+      <div class="text-gray-700 text-sm mt-1 font-mono break-all">
         {{ selectedFile.replace(/^\/+/, '') }}
       </div>
       
       <!-- Translation settings -->
       <div class="mt-3 grid grid-cols-2 md:grid-cols-3 gap-3">
         <div>
-          <label class="block text-sm text-green-800 mb-1">Source language</label>
-          <select v-model="sourceLanguage" class="w-full px-2 py-1 border border-green-300 rounded">
+          <label class="block text-sm text-gray-800 mb-1">Source language</label>
+          <select v-model="sourceLanguage" class="w-full px-2 py-1 border border-gray-300 rounded">
             <option value="en">English</option>
             <option value="fr">French</option>
             <option value="es">Spanish</option>
@@ -94,8 +94,8 @@ function handleSendToApi() {
           </select>
         </div>
         <div>
-          <label class="block text-sm text-green-800 mb-1">Target language</label>
-          <select v-model="targetLanguage" class="w-full px-2 py-1 border border-green-300 rounded">
+          <label class="block text-sm text-gray-800 mb-1">Target language</label>
+          <select v-model="targetLanguage" class="w-full px-2 py-1 border border-gray-300 rounded">
             <option value="fr">French</option>
             <option value="en">English</option>
             <option value="es">Spanish</option>
@@ -103,8 +103,8 @@ function handleSendToApi() {
           </select>
         </div>
         <div>
-          <label class="block text-sm text-green-800 mb-1">AI Model</label>
-          <select v-model="modelName" class="w-full px-2 py-1 border border-green-300 rounded">
+          <label class="block text-sm text-gray-800 mb-1">AI Model</label>
+          <select v-model="modelName" class="w-full px-2 py-1 border border-gray-300 rounded">
             <option value="gpt-oss">GPT-OSS</option>
             <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
             <option value="gpt-4">GPT-4</option>
@@ -122,6 +122,11 @@ function handleSendToApi() {
           <span v-if="isApiSending" class="inline-block animate-spin">⟳</span>
           {{ isApiSending ? 'Translating...' : 'Translate' }}
         </button>
+
+        <div>
+
+        </div>
+
       </div>
     </div>
     
